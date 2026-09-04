@@ -688,133 +688,115 @@
 
 
 
+
 <script>
 (function(){
   "use strict";
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  // すべての演出対象を「文書順」で取得
-  var nodes = Array.prototype.slice.call(
-    document.querySelectorAll('.fx-fade, .fx-type')
-  );
+  var fades = Array.prototype.slice.call(document.querySelectorAll('.fx-fade'));
+  var types = Array.prototype.slice.call(document.querySelectorAll('.fx-type'));
 
+  // フォールバック：非対応 or モーション抑制なら即時表示
   if(reduce || !('IntersectionObserver' in window)){
-    nodes.forEach(function(n){ n.classList.add('fx-in'); });
+    fades.forEach(function(n){ n.classList.add('fx-in'); });
+    types.forEach(function(n){ n.classList.add('fx-in'); });
     return;
   }
 
-  // タイピング対象は、元テキストを退避して空にしておく
-  nodes.forEach(function(n){
-    if(n.classList.contains('fx-type')){
-      // 子要素(strong等)を含む場合もあるので、内容をHTMLとして退避
-      n.dataset.fxHtml = n.innerHTML;
-      n.innerHTML = '';
-    }
+  // ============================================================
+  // (A) フェードイン：各要素が画面に入ったら「その場で独立して」発火
+  //     他要素を待たない・待たせない。一度きり。
+  // ============================================================
+  var fadeIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('fx-in');
+        fadeIO.unobserve(e.target);
+      }
+    });
+  }, { threshold:0.15, rootMargin:'0px 0px -8% 0px' });
+  fades.forEach(function(n){ fadeIO.observe(n); });
+
+  // ============================================================
+  // (B) タイピング：types だけを文書順の直列キューで処理。
+  //     「画面に入っていて、かつ前の打鍵が終わっている」ものを
+  //     順に打つ。ここだけ“スクロールを追い越さない”。一度きり。
+  // ============================================================
+  // 内容を退避して空に
+  types.forEach(function(n){
+    n.dataset.fxHtml = n.innerHTML;
+    n.innerHTML = '';
   });
 
-  // 可視判定
-  var visible = {};
-  var io = new IntersectionObserver(function(entries){
+  var visible = new Array(types.length).fill(false);
+  var typeIO = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      var i = nodes.indexOf(e.target);
-      if(i < 0) return;
-      if(e.isIntersecting){ visible[i] = true; pump(); }
+      var i = types.indexOf(e.target);
+      if(i>=0 && e.isIntersecting){ visible[i] = true; pump(); }
     });
-  }, { threshold:0.15, rootMargin:'0px 0px -6% 0px' });
-  nodes.forEach(function(n){ io.observe(n); });
+  }, { threshold:0.10, rootMargin:'0px 0px -4% 0px' });
+  types.forEach(function(n){ typeIO.observe(n); });
 
-  // 文書順に一つずつ処理するキュー
-  var cursor = 0;        // 次に処理すべき index
-  var busy   = false;    // タイピング実行中フラグ
+  var cursor = 0, busy = false;
 
   function pump(){
-    if(busy) return;
-    if(cursor >= nodes.length) return;
-
-    var node = nodes[cursor];
-
-    // まだ画面に入っていなければ、ここで停止（スクロールを追い越さない）
+    if(busy || cursor >= types.length) return;
+    // 未表示の要素に達したら、そこで待機（追い越さない）
     if(!visible[cursor]) return;
-
-    if(node.classList.contains('fx-type')){
-      // タイピング：完了まで busy、その後 cursor を進める
-      busy = true;
-      typeIn(node, function(){
-        busy = false;
-        cursor++;
-        io.unobserve(node);
-        pump();
-      });
-    }else{
-      // フェード：即座に発火して次へ（待たない）
-      node.classList.add('fx-in');
-      io.unobserve(node);
+    var el = types[cursor];
+    busy = true;
+    typeIn(el, function(){
+      busy = false;
+      typeIO.unobserve(el);
       cursor++;
       pump();
-    }
+    });
   }
 
-  // タイピング本体：HTMLタグを保持しつつ、テキストノードだけ1文字ずつ出す
   function typeIn(el, done){
     el.classList.add('fx-in');
-    var html = el.dataset.fxHtml || '';
-    // トークン列へ分解：タグはまとめて、テキストは1文字ずつ
-    var tokens = tokenize(html);
+    var tokens = tokenize(el.dataset.fxHtml || '');
     var caret = document.createElement('span');
     caret.className = 'fx-caret';
     el.appendChild(caret);
-
     var i = 0;
     function step(){
       if(i >= tokens.length){
         if(caret.parentNode) caret.parentNode.removeChild(caret);
-        done();
-        return;
+        done(); return;
       }
       var t = tokens[i++];
       if(t.tag){
-        // タグはキャレットの前にそのまま挿入
         caret.insertAdjacentHTML('beforebegin', t.value);
-        step(); // タグは待たずに続行
+        step();
       }else{
         caret.insertAdjacentText('beforebegin', t.value);
-        // 「。」「！」「？」で一呼吸、句読点「、」で軽く、その他は通常
-        var ch = t.value;
-        var wait = 84;                 // 基本 84ms/字
-        if(ch==='。'||ch==='！'||ch==='？') wait = 680;
-        else if(ch==='、'||ch==='，') wait = 260;
-        else if(ch===' '||ch==='\n') wait = 20;
+        var ch = t.value, wait = 30;
+        if(ch==='。'||ch==='！'||ch==='？') wait = 420;
+        else if(ch==='、'||ch==='，') wait = 170;
+        else if(ch===' '||ch==='\n') wait = 12;
         setTimeout(step, wait);
       }
     }
     step();
   }
 
-  // HTML文字列を「タグ」と「1文字テキスト」のトークン列に分解
   function tokenize(html){
-    var out = [];
-    var re = /<[^>]+>/g;
-    var last = 0, m;
-    while((m = re.exec(html)) !== null){
-      if(m.index > last){
-        pushChars(out, html.slice(last, m.index));
-      }
-      out.push({ tag:true, value:m[0] });
-      last = re.lastIndex;
+    var out=[], re=/<[^>]+>/g, last=0, m;
+    while((m=re.exec(html))!==null){
+      if(m.index>last) pushChars(out, html.slice(last, m.index));
+      out.push({tag:true, value:m[0]});
+      last=re.lastIndex;
     }
-    if(last < html.length) pushChars(out, html.slice(last));
+    if(last<html.length) pushChars(out, html.slice(last));
     return out;
   }
   function pushChars(out, text){
-    // HTMLエンティティ（&amp; 等）を1トークンとして扱う
-    var re = /&[a-zA-Z#0-9]+;|[\s\S]/g, m;
-    while((m = re.exec(text)) !== null){
-      out.push({ tag:false, value:m[0] });
-    }
+    var re=/&[a-zA-Z#0-9]+;|[\s\S]/g, m;
+    while((m=re.exec(text))!==null) out.push({tag:false, value:m[0]});
   }
 
-  // 初回ポンプ（既に画面内にある先頭要素を動かす）
-  // レイアウト確定後に一度走らせる
   requestAnimationFrame(function(){ requestAnimationFrame(pump); });
   window.addEventListener('scroll', pump, { passive:true });
   window.addEventListener('resize', pump);
