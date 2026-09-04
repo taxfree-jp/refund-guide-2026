@@ -232,6 +232,95 @@
   }
 
 
+
+
+  /* ═══════════ アニメーション ═══════════ */
+  /* ふわっと表示（共通） */
+  .fx{opacity:0;transform:translateY(20px);transition:opacity .85s ease-out,transform .85s ease-out;}
+  .fx.on{opacity:1;transform:translateY(0);}
+
+  /* 枠だけ先に出すボックス（目次・まとめ）：中身は別途タイピング */
+  .fx-box{opacity:0;transform:translateY(20px);transition:opacity .85s ease-out,transform .85s ease-out;}
+  .fx-box.on{opacity:1;transform:translateY(0);}
+
+  /* 上下線ノート：線を個別に制御するため border を透明にして疑似要素で描く */
+  .note{border-top-color:transparent;border-bottom-color:transparent;}
+  .note{position:relative;}
+  .note .rule-t,.note .rule-b{
+    position:absolute;left:0;right:0;height:1px;background:var(--amber);
+    transform:scaleX(0);transform-origin:left center;
+    transition:transform .7s ease-out;
+  }
+  .note .rule-t{top:-1px;}
+  .note .rule-b{bottom:-1px;}
+  .note .rule-t.on,.note .rule-b.on{transform:scaleX(1);}
+  /* disclaimer も同様に */
+  .disclaimer{border-top-color:transparent;border-bottom-color:transparent;position:relative;}
+  .disclaimer .rule-t,.disclaimer .rule-b{
+    position:absolute;left:0;right:0;height:1px;background:var(--amber);
+    transform:scaleX(0);transform-origin:left center;
+    transition:transform .7s ease-out;
+  }
+  .disclaimer .rule-t{top:-1px;}
+  .disclaimer .rule-b{bottom:-1px;}
+  .disclaimer .rule-t.on,.disclaimer .rule-b.on{transform:scaleX(1);}
+
+  /* タイピング中のキャレット */
+  .caret{
+    display:inline-block;width:.06em;
+    border-right:2px solid var(--accent);
+    margin-left:1px;animation:blink .9s step-end infinite;
+    vertical-align:baseline;
+  }
+  @keyframes blink{50%{border-color:transparent;}}
+
+  /* モーション低減設定：全て即時表示 */
+  @media (prefers-reduced-motion:reduce){
+    .fx,.fx-box{opacity:1;transform:none;transition:none;}
+    .note .rule-t,.note .rule-b,
+    .disclaimer .rule-t,.disclaimer .rule-b{transform:scaleX(1);transition:none;}
+    .caret{display:none;}
+  }
+
+  /* ---- この章のまとめ（囲みボックス） ---- */
+  .recap{
+    margin:56px 0 8px;
+    padding:26px 30px 28px;
+    background:var(--accent-soft);
+    border:1px solid #c3d9ee;
+    border-radius:8px;
+  }
+  .recap-title{
+    display:block;
+    font-size:.86rem;font-weight:700;letter-spacing:.06em;
+    color:var(--accent);
+    margin-bottom:16px;
+    padding-bottom:10px;
+    border-bottom:1px solid #c3d9ee;
+  }
+  .recap ul{
+    list-style:none;
+    margin:0;padding:0;
+  }
+  .recap li{
+    position:relative;
+    margin:12px 0;
+    padding-left:1.7em;
+    line-height:1.85;
+    font-size:.97rem;
+  }
+  .recap li::before{
+    content:"\25B6";           /* ▶ */
+    position:absolute;left:0;top:0;
+    color:var(--accent);
+    font-size:.78em;
+    line-height:2.3;
+  }
+  @media (max-width:600px){
+    .recap{padding:22px 20px 24px;margin:44px 0 8px;}
+    .recap li{font-size:.94rem;}
+  }
+
   /* ---- ヒーロー（画像＋タイトルオーバーレイ） ---- */
   .hero{
     position:relative;
@@ -374,11 +463,23 @@
 
     <p>つまり、平たく言えば、<strong>悪質な転売による“税の取りこぼし”があまりに深刻になったため、国がついに重い腰を上げ、抜本的な対策として新制度に踏み切った</strong>――これが、今回の改正の本当の背景です。<br>「持ち出しが確認できて、はじめて免税する」という新しい順序は、まさにこの穴をふさぐための設計なのだと考えると、すべてが腑に落ちてくるはずです。</p>
 
-    <div class="note">
+    <div class="note"><span class="rule-t"></span><span class="rule-b"></span>
       <span class="tag">見落とされがちな“もう一つの効果”</span>
       <p>ここで、ぜひ添えておきたい大切な視点があります。<br>この改正は、決して「不正を取り締まるための、後ろ向きな仕組み」だけでは終わっていません。</p>
       <p>新制度では、手続きを電子システムで進めることが前提になります。<br>その結果として、<strong>旅行者から見た免税手続きそのものが、ぐっと簡略化される</strong>のです。<br>ごちゃごちゃした書類のやり取りや、消耗品を特殊な袋で包む手間などが減り、買い物のハードルが下がる。<br>つまり、不正を封じるという“本丸”の目的の裏側で、<strong>旅行者にとっての使いやすさ（ユーザビリティ）の向上</strong>という、うれしいおまけまで付いてきた、というわけです。<br>国にとっては税収を守り、旅行者にとっては買い物がしやすくなる。<br>この両面を持っている、と捉えておくと、制度の見え方がずいぶん立体的になります。</p>
     </div>
+    <div class="recap">
+      <span class="recap-title">この章のまとめ</span>
+      <ul>
+        <li>2026年11月1日から、免税は「購入時免税」ではなく「リファンド方式（事後還付方式）」になる。</li>
+        <li>お店は<strong>税込価格で販売</strong>し、旅行者は購入日から<strong>90日以内</strong>に出国する。</li>
+        <li>出国時に税関で持ち出しが確認され、その情報がお店へ届いてはじめて<strong>免税が成立</strong>する。</li>
+        <li>つまり「売った瞬間に免税」から「持ち出しが確認されて免税」へ、<strong>順序が逆転</strong>した。</li>
+        <li>背景には、悪質な転売による深刻な税の取りこぼしがあり、国がその穴をふさぐために踏み切った。</li>
+        <li>同時に手続きが電子化され、結果として旅行者にとっての使いやすさも向上している。</li>
+      </ul>
+    </div>
+
   </section>
 
   <!-- ============ 2 ============ -->
@@ -441,10 +542,24 @@
       </table>
     </div>
 
-    <div class="note">
+    <div class="note"><span class="rule-t"></span><span class="rule-b"></span>
       <span class="tag">ここだけは、絶対に押さえてください</span>
       <p>新制度への移行には、<strong>“お試し期間”や“併用期間”が一切ありません</strong>。<br>2026年10月31日の営業が終わったその瞬間、翌11月1日からは、もう新制度一本に切り替わります。<br>「しばらくは古いやり方も使える」という猶予は、ないのです。<br>ですから、11月以降も免税販売を続けたいのであれば、その日までにリファンド方式への対応を、必ず終わらせておかなければなりません。<br>もし準備が間に合わなければ、11月からは<strong>そもそも免税販売ができなくなってしまう</strong>――これは、どうか本気で受け止めておいてください。</p>
     </div>
+    <div class="recap">
+      <span class="recap-title">この章のまとめ</span>
+      <ul>
+        <li>販売価格が税抜から<strong>税込</strong>へ。免税判定のライン（5,000円以上）は従来どおり税抜価額で見る。</li>
+        <li>会計は、販売時に課税売上として処理し、税関確認情報を保存した時点で<strong>免税売上へ振り替える</strong>。</li>
+        <li>一般物品と消耗品の<strong>区分が廃止</strong>。購入上限額（50万円）も撤廃され、特殊包装も不要になる。</li>
+        <li><strong>「旅行者への返金」</strong>という、これまでなかった業務が新たに発生する。</li>
+        <li>店舗区分は一般型・自動販売機型の2区分へ整理され、<strong>電子化に対応できる体制</strong>が許可の要件になる。</li>
+        <li>税抜100万円以上の物品は、シリアルナンバー等の特定情報を送信事項に加える必要がある。</li>
+        <li>「別送」は廃止済み。「直送」は引き続き可能で、こちらは輸出免税として扱われ税関確認は不要。</li>
+        <li><strong>移行に猶予期間はなく、10月31日で即・切替。</strong>準備が間に合わなければ免税販売ができなくなる。</li>
+      </ul>
+    </div>
+
   </section>
 
   <!-- ============ 3 ============ -->
@@ -460,7 +575,7 @@
 
     <p>結論から申し上げます。<br><strong>「手続委託型という“お店の区分”はなくなる。けれども、委託を受けて手続きを代行するという“事業そのもの”は、なくならない」</strong>――これが正確な理解です。<br>この2つは、まったく別の話なのです。</p>
 
-    <div class="note">
+    <div class="note"><span class="rule-t"></span><span class="rule-b"></span>
       <span class="tag">いちばん大事なところ</span>
       <p>消えてなくなるのは、あくまで<strong>免税店の「店舗カテゴリー」</strong>としての手続委託型です。<br>委託して手続きを代わりにやってもらう、という仕組みそのものは、制度としてしっかり生き残ります。<br>「区分の統廃合」と「業務の廃止」を、どうか切り分けて考えてください。</p>
     </div>
@@ -491,6 +606,17 @@
     </div>
 
     <p>とりわけ②に注目してください。<br>返金の手続きは、免税店が自分でやってもいいのですが、<strong>承認送受信事業者などに委託する</strong>という道も用意されています。<br>つまり――区分が統合されて仕事が消えるどころか、話はまったく逆なのです。<br>委託されるサービスの中身が、「手続きの代行」だけだったものから、<strong>「データの送受信と、返金の処理まで、まとめて面倒を見る一気通貫のサービス」</strong>へと広がっていく。<br>専門事業者の出番は、減るどころか、むしろ増えていく――そう考えるのが、実態に近い読み方です。</p>
+    <div class="recap">
+      <span class="recap-title">この章のまとめ</span>
+      <ul>
+        <li>「手続委託型」という<strong>店舗区分</strong>はなくなるが、<strong>委託して代行する事業そのものは存続</strong>する。</li>
+        <li>免税手続カウンターの設置場所について「特定商業施設内」という縛りがなくなり、委託はむしろやりやすくなる。</li>
+        <li>委託関係に変更がなければ、特段の手続きなく既存の委託先へそのまま委託できる。</li>
+        <li>委託を受ける側の役割は、<strong>承認免税手続事業者</strong>（手続きの代行）と<strong>承認送受信事業者</strong>（データ送信＋返金の受託）の2つ。</li>
+        <li>新制度では返金の受託が加わり、委託業務は「手続き代行」から<strong>「データ連携＋返金まで一気通貫」</strong>へと広がる。</li>
+      </ul>
+    </div>
+
   </section>
 
   <!-- ============ 4 ============ -->
@@ -534,6 +660,17 @@
       </table>
     </div>
     <p>この中でも、<strong>「承認送受信事業者」であり、かつ「返金の実行者」でもある</strong>という立場は、今回の変更の影響をもっとも色濃く受ける場所に位置しています。<br>担う責任は重い。<br>けれども裏を返せば、それだけ<strong>市場での存在感を大きく高められる好機</strong>でもある――そんな二面性を帯びた、ひときわ重要なポジションなのです。</p>
+    <div class="recap">
+      <span class="recap-title">この章のまとめ</span>
+      <ul>
+        <li>購入記録情報の<strong>送信データ項目が追加</strong>される（シリアルナンバー等）。</li>
+        <li>データの流れが一方通行から<strong>双方向</strong>へ。税関確認情報を「Pull型API連携」で受け取る仕組みが必要になる。</li>
+        <li>POSは、税込販売への切り替え、免税判定ロジックの作り替え、送信項目の追加対応が避けられない。</li>
+        <li>対応を迫られるのは免税店だけではない。<strong>承認送信／送受信事業者、POSベンダー、決済事業者、税関・国税庁</strong>まで及ぶ。</li>
+        <li>「承認送受信事業者かつ返金の実行者」という立場は、影響が最も濃い一方、存在感を高める好機でもある。</li>
+      </ul>
+    </div>
+
   </section>
 
   <!-- ============ 5 ============ -->
@@ -582,6 +719,18 @@
         </tbody>
       </table>
     </div>
+    <div class="recap">
+      <span class="recap-title">この章のまとめ</span>
+      <ul>
+        <li><strong>Global Blue</strong>：代理登録方式で旅行者の手間を減らし、問い合わせ窓口を自社で巻き取る。早期契約を推奨。</li>
+        <li><strong>J&amp;J Tax Free＋GMO-PG</strong>：2025年12月に戦略的提携。GMOの資金移動業ライセンスで法令面のハードルを突破。</li>
+        <li><strong>スマレジ</strong>：決済カードへ自動返金し、旅行者の申請自体を不要に。POS・決済・返金を垂直統合。</li>
+        <li><strong>SmartDetax / JPrefund</strong>：APIを開放するプラットフォーム型。AIスキャンで手入力ゼロを打ち出す。</li>
+        <li><strong>POSベンダー勢</strong>：既存POSのまま安価に新制度対応、を武器に中小店舗を狙う。</li>
+        <li>戦略は<strong>「開放型」「垂直統合型」「プラットフォーム型」</strong>の3つの流れに大別できる。</li>
+      </ul>
+    </div>
+
   </section>
 
   <!-- ============ 6 ============ -->
@@ -631,6 +780,18 @@
     </ul>
     <p>ちなみに、承認送信事業者とは別の事業者へ返金を委託する場合は、お店が自分でその決済事業者と契約を結ぶ必要があり、承認送信事業者を経由しての契約はできない、とされています。<br>この一点が、各社のサービス設計の分かれ道になっていたりもします。</p>
     <p>ともあれ、A・B・Cのすべてに対応しているということは、<strong>「自分たちで返金したいお店」にも「まるごと任せてしまいたいお店」にも、どちらの事情にも応えられる懐の深さ</strong>を持っている、ということを意味します。<br>ここは、事業者を見比べるときの、なかなか大事な観点になります。</p>
+    <div class="recap">
+      <span class="recap-title">この章のまとめ</span>
+      <ul>
+        <li>返金対応事業者は、<strong>全国免税店協会</strong>の特設サイトに一覧（PDF）として公開されている。</li>
+        <li>ただしこれは各事業者の<strong>申告ベースの参考情報</strong>で、協会や国の認可・保証ではない。</li>
+        <li>2025年10月時点の掲載は8社。うち<strong>返金対応A・B・Cフル対応＋送信端末フル対応</strong>が4社ある。</li>
+        <li>「A・B・C」は<strong>返金を誰がどう担うか</strong>のパターン分け（自店で返金／承認送信事業者へ委託／別の決済事業者へ委託）。</li>
+        <li>承認送信事業者とは別の事業者に返金を委託する場合、免税店が自らその決済事業者と契約する必要がある。</li>
+        <li>一覧は更新のたびに掲載が増えており、返金市場への参入が続いている。</li>
+      </ul>
+    </div>
+
   </section>
 
   <!-- ============ 7 ============ -->
@@ -644,7 +805,7 @@
 
     <p>さて、ここが、この記事でいちばんお伝えしたかった話かもしれません。<br>堅牢なシステムや、利用者に本当に喜ばれるプロダクトを大切に考えておられる方には、とりわけ深く関わってくるところです。<br>業界のメディアが鋭く指摘している、この市場の“構造的な落とし穴”について、少しだけ真剣にお話しさせてください。</p>
 
-    <div class="note">
+    <div class="note"><span class="rule-t"></span><span class="rule-b"></span>
       <span class="tag">見落としてはいけない、構造の話</span>
       <p>国税庁のQ&amp;Aによると、返金業務の委託を受ける事業者は、必ずしも消費税法上の承認免税手続事業者や承認送受信事業者である必要は「ない」とされています。<br>しかも、返金の代理業務だけを行うための、国税庁独自の資格制度も設けられていません。<br>先ほど触れたとおり、協会の一覧も各事業者の申告ベースであって、国が返金について認可や保証をしているわけではない、と明記されています。</p>
     </div>
@@ -656,10 +817,22 @@
     <h3>この“落とし穴”が、逆に教えてくれること</h3>
     <p>では、この構造をどう受け止めればいいのでしょう。<br>ここで、ものの見方をくるりと裏返してみましょう。<br>市場全体が「国のお墨付きがないまま、お店が自己責任で委託先を選ぶ」という構造になっている――ということは、最終的にものを言うのは、たった一つ。<br><strong>「信頼」</strong>です。<br>セキュリティ、資金の管理、障害時の対応、個人情報の保護。<br>こうしたところで信頼を勝ち取れる事業者だけが、選ばれていく。<br>そういう市場なのです。</p>
 
-    <div class="note">
+    <div class="note"><span class="rule-t"></span><span class="rule-b"></span>
       <span class="tag">だからこそ、ここが効いてくる</span>
       <p>裏を返せば、長い時間をかけて積み上げてきた、事故のない安定運用の実績は、決済大手の資金力や、グローバルな運用実績とは<strong>まったく別の軸で、とてつもなく強い説得材料</strong>になり得る、ということです。<br>一方で――ここで信頼を裏切るような事故を一度でも起こしてしまえば、その最大の武器が、一瞬にして崩れ去るリスクでもあります。<br>つまりこの市場において、「堅牢であること」は、単なる技術的な要件などではありません。<br>それは<strong>“選ばれる理由”そのもの</strong>なのです。<br>この一点は、どうか胸に刻んでおいてください。</p>
     </div>
+    <div class="recap">
+      <span class="recap-title">この章のまとめ</span>
+      <ul>
+        <li>返金業務の受託者は、承認免税手続事業者や承認送受信事業者<strong>である必要がない</strong>。専用の資格制度もない。</li>
+        <li>つまり免税店は、委託先の<strong>安全性・資金管理・個人情報保護・返金能力・障害時対応を自ら調べ、自己責任で選ぶ</strong>しかない。</li>
+        <li>返金には資金決済法の登録、犯収法の本人確認、外為法の確認などが絡むが、<strong>国税当局が横断的に確認する仕組みはない</strong>。</li>
+        <li>この構造ゆえに、最終的にものを言うのは<strong>「信頼」</strong>である。</li>
+        <li>長期の無事故・安定運用の実績は、資金力やグローバル実績とは<strong>別軸の強い説得材料</strong>になる。</li>
+        <li>逆に一度の事故で実績は崩れる。この市場で<strong>「堅牢であること」は“選ばれる理由”そのもの</strong>。</li>
+      </ul>
+    </div>
+
   </section>
 
   <!-- ============ 8 ============ -->
@@ -686,7 +859,7 @@
     <p>新制度が幕を開けるその日まで、ここで広げた地図が、制度を理解し、業界の動きを見渡すための、確かなよりどころになってくれるはずです。<br>とはいえ、制度の細かな仕様や最新の情報は、これからもどんどん更新されていきます。<br>実務の判断をされる際には、どうか国税庁の特設ページや、全国免税店協会の公開資料といった<strong>一次情報</strong>にも、あわせて目を通すようにしてください。<br>この記事が、その学びの、確かな土台になれたのなら――これほどうれしいことはありません。</p>
   </section>
 
-  <div class="disclaimer">
+  <div class="disclaimer"><span class="rule-t"></span><span class="rule-b"></span>
       <p style="margin-top:0;"><strong>この記事について</strong></p>
       <p>本稿は、公開情報(国税庁・観光庁・国土交通省の資料、全国免税店協会の公開資料、各社の公式サイトおよびプレスリリース、業界メディア等)をもとに、制度改正の全体像と業界動向を、なるべくかみ砕いて体系的に整理したものです。<br>各社に関する記述は、対外的に公表されている打ち出しや直近の動きにもとづくものであり、内部の設計判断や契約実績を示すものではありません。</p>
       <p>制度の具体的な仕様・手続き・会計処理については、施行に向けて情報が更新される可能性があります。<br>実務の判断にあたっては、国税庁「輸出物品販売場制度のリファンド方式への見直し」をはじめとする一次情報をご確認ください。<br>掲載事業者の一覧は2025年10月時点の公開資料にもとづく整理であり、最新の状況は協会の特設サイトで更新されます。</p>
@@ -700,5 +873,247 @@
   </div>
 </footer>
 
+
+<script>
+// ═══════════════════════════════════════════
+//  演出エンジン：上から下へ、一パーツずつ順番に再生
+//  ・開始時は背景のみ（全パーツ非表示）
+//  ・前のパーツが終わってから次へ（直列）
+//  ・画面に入るまで待機（waitForVisible）
+//  ・一度きり（リロードで再生）
+// ═══════════════════════════════════════════
+(function(){
+  "use strict";
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  // ── 演出プランを組み立てる（文書順） ──
+  // kind: 'fade'（ふわっと） / 'type'（タイピング） /
+  //       'box'（枠fade→中身type） / 'note'（上線→type→下線）
+  var plan = [];
+
+  function pushFade(el){ if(el) plan.push({kind:'fade', el:el}); }
+  function pushType(el){ if(el) plan.push({kind:'type', el:el}); }
+
+  // 1) ラベル
+  pushFade(document.querySelector('.eyebrow'));
+  // 2) ヒーロー（タイトル込み）
+  pushFade(document.querySelector('.hero'));
+  // 3) リード文
+  document.querySelectorAll('.lede').forEach(pushType);
+  // 4) 目次（枠→中身）
+  var toc = document.querySelector('nav.toc');
+  if(toc) plan.push({kind:'box', el:toc, inner:toc.querySelectorAll('h2, li')});
+
+  // 5) 各セクションを文書順に処理
+  document.querySelectorAll('section').forEach(function(sec){
+    // セクション直下＋入れ子の要素を、文書順に走査
+    var nodes = sec.querySelectorAll(
+      'h2.sec, h3, figure.illust, .table-scroll, .note, .recap, ol.flow, p, ul'
+    );
+    nodes.forEach(function(el){
+      // 親が既に扱う要素（table内・note内・recap内・flow内）はスキップ
+      if(el.closest('.table-scroll') && !el.classList.contains('table-scroll')) return;
+      if(el.closest('.note')  && !el.classList.contains('note'))  return;
+      if(el.closest('.recap') && !el.classList.contains('recap')) return;
+      if(el.closest('ol.flow')&& !el.classList.contains('flow'))  return;
+
+      if(el.matches('h2.sec, h3, figure.illust, .table-scroll')){
+        plan.push({kind:'fade', el:el});
+      }else if(el.classList.contains('note')){
+        plan.push({kind:'note', el:el, inner:el.querySelectorAll('p, .tag')});
+      }else if(el.classList.contains('recap')){
+        plan.push({kind:'box', el:el, inner:el.querySelectorAll('.recap-title, li')});
+      }else if(el.classList.contains('flow')){
+        plan.push({kind:'box', el:el, inner:el.querySelectorAll('li'), noFrame:true});
+      }else if(el.matches('p, ul')){
+        if(el.tagName.toLowerCase()==='ul'){
+          plan.push({kind:'box', el:el, inner:el.querySelectorAll('li'), noFrame:true});
+        }else{
+          plan.push({kind:'type', el:el});
+        }
+      }
+    });
+  });
+
+  // 6) この記事について（上下線）
+  var dis = document.querySelector('.disclaimer');
+  if(dis) plan.push({kind:'note', el:dis, inner:dis.querySelectorAll('p')});
+  // 7) フッター
+  pushFade(document.querySelector('footer .wrap p'));
+
+  if(plan.length===0) return;
+
+  // ── モーション低減：即時表示して終了 ──
+  if(reduce || !('IntersectionObserver' in window)){
+    plan.forEach(function(s){
+      s.el.classList.add('on');
+      if(s.inner) s.inner.forEach(function(x){ x.classList.add('on'); });
+    });
+    document.querySelectorAll('.rule-t,.rule-b').forEach(function(r){ r.classList.add('on'); });
+    return;
+  }
+
+  // ── 初期状態：全て隠す ──
+  var stash = new WeakMap();
+  plan.forEach(function(s){
+    if(s.kind==='fade'){
+      s.el.classList.add('fx');
+    }else if(s.kind==='type'){
+      stash.set(s.el, s.el.innerHTML);
+      s.el.innerHTML='';
+      s.el.style.opacity='0';
+    }else if(s.kind==='box'){
+      if(!s.noFrame) s.el.classList.add('fx-box');
+      s.inner.forEach(function(x){
+        stash.set(x, x.innerHTML);
+        x.innerHTML='';
+        x.style.opacity='0';
+      });
+    }else if(s.kind==='note'){
+      s.inner.forEach(function(x){
+        stash.set(x, x.innerHTML);
+        x.innerHTML='';
+        x.style.opacity='0';
+      });
+    }
+  });
+
+  // ── ユーティリティ ──
+  function wait(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+
+  function waitForVisible(el){
+    return new Promise(function(resolve){
+      var r = el.getBoundingClientRect();
+      // 既に画面内、または上へ通り過ぎている場合は待たない
+      if(r.top < window.innerHeight * 0.88){ resolve(); return; }
+      var io = new IntersectionObserver(function(e){
+        if(e[0].isIntersecting){ io.disconnect(); resolve(); }
+      }, { threshold:0.01, rootMargin:'0px 0px -6% 0px' });
+      io.observe(el);
+    });
+  }
+
+  // 「読者がもうその位置を過ぎている」かを判定
+  // 画面上端より上に出た要素だけでなく、
+  // 画面内に見えている要素も“今まさに読まれている”ので、演出を待たせない
+  function isPassed(el){
+    var r = el.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.5;   // 画面の中央より上にある＝もう見えている
+  }
+
+  // タイピング（タグは即時、文字は1つずつ）
+  // スクロールで追い越されたら、残りを即座に表示して完了する
+  function typeIn(el, html){
+    return new Promise(function(resolve){
+      el.style.opacity='1';
+      var tokens = html.split(/(<[^>]+>)/g).filter(function(t){ return t.length>0; });
+      var ti=0, ci=0, chars=[], out='';
+      var caret = document.createElement('span');
+      caret.className='caret';
+      function render(){ el.innerHTML = out; el.appendChild(caret); }
+      function finishNow(){ el.innerHTML = html; resolve(); }
+      render();
+      function step(){
+        // 読者が完全に読み飛ばしたら、打ち切って全文表示
+        if(el.getBoundingClientRect().bottom < -40){ finishNow(); return; }
+        if(ti>=tokens.length){ el.innerHTML = out; resolve(); return; }
+        var tk = tokens[ti];
+        if(tk.charAt(0)==='<'){ out+=tk; render(); ti++; step(); return; }
+        if(ci===0) chars = Array.from(tk);
+        if(ci>=chars.length){ ti++; ci=0; step(); return; }
+        var ch = chars[ci];
+        out += ch; render(); ci++;
+        var d = 55;
+        if(ch==='。'||ch==='！'||ch==='？') d = 620;
+        else if(ch==='、'||ch==='，') d = 260;
+        else if(ch===' '||ch==='\n') d = 20;
+        setTimeout(step, d);
+      }
+      step();
+    });
+  }
+
+  // 演出を省略して、その要素を完成状態にする
+  function finishInstantly(s){
+    if(s.kind==='fade'){
+      s.el.classList.add('on');
+    }else if(s.kind==='type'){
+      s.el.style.opacity='1';
+      s.el.innerHTML = stash.get(s.el) || s.el.innerHTML;
+    }else if(s.kind==='box'){
+      if(!s.noFrame) s.el.classList.add('on');
+      s.inner.forEach(function(x){
+        x.style.opacity='1';
+        x.innerHTML = stash.get(x) || x.innerHTML;
+      });
+    }else if(s.kind==='note'){
+      var rt=s.el.querySelector('.rule-t'), rb=s.el.querySelector('.rule-b');
+      if(rt) rt.classList.add('on');
+      if(rb) rb.classList.add('on');
+      s.inner.forEach(function(x){
+        x.style.opacity='1';
+        x.innerHTML = stash.get(x) || x.innerHTML;
+      });
+    }
+  }
+
+  // ── メイン：直列再生 ──
+  async function run(){
+    await wait(900);                       // 開始をわずかに遅らせて余裕を出す
+    for(var i=0;i<plan.length;i++){
+      var s = plan[i];
+
+      // 読者がすでにこの位置を通り過ぎている場合は、
+      // 演出を省略して即座に完成状態にし、次へ進む（順番待ちで置き去りにしない）
+      if(s.el.getBoundingClientRect().top < window.innerHeight * 0.35){
+        finishInstantly(s);
+        continue;
+      }
+
+      await waitForVisible(s.el);
+      var skip = false;
+      await wait(200);                     // 各パーツの開始を少し遅らせる
+
+      if(s.kind==='fade'){
+        s.el.classList.add('on');
+        await wait(760);
+
+      }else if(s.kind==='type'){
+        await typeIn(s.el, stash.get(s.el)||'');
+        await wait(200);
+
+      }else if(s.kind==='box'){
+        if(!s.noFrame){
+          s.el.classList.add('on');        // 枠をふわっと
+          await wait(820);      // 枠が出きってから中身へ
+        }
+        for(var j=0;j<s.inner.length;j++){
+          var x = s.inner[j];
+          await waitForVisible(x);
+          await typeIn(x, stash.get(x)||'');
+          await wait(150);
+        }
+        await wait(200);
+
+      }else if(s.kind==='note'){
+        var rt = s.el.querySelector('.rule-t');
+        var rb = s.el.querySelector('.rule-b');
+        if(rt){ rt.classList.add('on'); await wait(820); }   // 上線
+        for(var k=0;k<s.inner.length;k++){
+          var y = s.inner[k];
+          await waitForVisible(y);
+          await typeIn(y, stash.get(y)||'');
+          await wait(150);
+        }
+        await wait(120);
+        if(rb){ rb.classList.add('on'); await wait(760); }   // 下線
+      }
+    }
+  }
+
+  requestAnimationFrame(function(){ requestAnimationFrame(run); });
+})();
+</script>
 </body>
 </html>
