@@ -34,8 +34,7 @@
   /* ---- Header ---- */
   header.masthead{
     border-top:6px solid var(--accent);
-    background:var(--panel);
-    border-bottom:1px solid var(--line);
+    background:var(--paper);
   }
   .masthead .wrap{padding:60px 22px 56px;}
   .eyebrow{
@@ -51,10 +50,15 @@
   }
   h1{
     font-size:2.15rem;
-    line-height:1.5;
-    margin:0 0 34px;
+    line-height:1.55;
+    margin:0;
     font-weight:800;
     letter-spacing:.01em;
+    color:#fff;
+    text-shadow:
+      0 2px 12px rgba(0,0,0,.55),
+      0 1px 3px rgba(0,0,0,.7),
+      0 0 40px rgba(0,0,0,.35);
   }
   .lede{
     font-size:1.06rem;
@@ -63,9 +67,7 @@
   }
   .lede:last-of-type{margin-bottom:0;}
   .meta-note{
-    margin-top:40px;
-    padding-top:26px;
-    border-top:1px dashed var(--line-strong);
+    margin-top:34px;
     font-size:.9rem;
     color:var(--ink-soft);
   }
@@ -162,16 +164,14 @@
   .note{
     margin:56px 0;
     padding:30px 0 32px;
-    border-top:1px solid var(--accent);
-    border-bottom:1px solid var(--accent);
+    border-top:1px solid var(--amber);
+    border-bottom:1px solid var(--amber);
   }
   .note .tag{
     display:block;text-align:left;
     font-size:.8rem;font-weight:700;letter-spacing:.08em;
-    color:var(--accent);margin-bottom:18px;
+    color:var(--amber);margin-bottom:18px;
   }
-  .note.amber{border-top-color:var(--amber);border-bottom-color:var(--amber);}
-  .note.amber .tag{color:var(--amber);}
   .note p:first-of-type{margin-top:0;}
   .note p:last-child{margin-bottom:0;}
   @media (max-width:600px){
@@ -204,31 +204,70 @@
     border-top:1px solid var(--line);
     background:var(--panel);
   }
-  footer .wrap{padding:30px 22px 50px;}
-  footer p{font-size:.86rem;color:var(--ink-soft);margin:8px 0;}
+  footer .wrap{padding:26px 22px 40px;}
+  footer p{font-size:.84rem;color:var(--ink-soft);margin:0;text-align:center;}
   .disclaimer{
-    border:1px dashed var(--line-strong);
-    border-radius:5px;
-    padding:16px 20px;
-    background:#f7f9fb;
+    margin:56px 0 20px;
+    padding:30px 0 32px;
+    border-top:1px solid var(--amber);
+    border-bottom:1px solid var(--amber);
     font-size:.86rem;
     color:var(--ink-soft);
+  }
+  .disclaimer p:first-of-type{margin-top:0;}
+  .disclaimer p:last-child{margin-bottom:0;}
+  .disclaimer strong{
+    display:block;
+    font-size:.8rem;letter-spacing:.08em;
+    color:var(--amber);margin-bottom:12px;
   }
 
   a{color:var(--accent);}
 
   @media (max-width:600px){
     body{font-size:16px;}
-    h1{font-size:1.7rem;}
+    h1{font-size:1.5rem;}
     h2.sec{font-size:1.24rem;}
     .masthead .wrap{padding:40px 20px 32px;}
+  }
+
+
+  /* ---- ヒーロー（画像＋タイトルオーバーレイ） ---- */
+  .hero{
+    position:relative;
+    margin:0 0 40px;
+    border-radius:10px;
+    overflow:hidden;
+    background:#2b3742;
+    min-height:300px;
+  }
+  .hero-img{
+    display:block;width:100%;height:auto;
+    max-height:440px;object-fit:cover;
+  }
+  /* 画像の上に暗いグラデーションを敷いて白文字を読みやすく */
+  .hero-overlay{
+    position:absolute;inset:0;
+    display:flex;align-items:flex-end;
+    padding:38px 34px 32px;
+    background:linear-gradient(
+      to bottom,
+      rgba(0,0,0,.10) 0%,
+      rgba(0,0,0,.30) 45%,
+      rgba(0,0,0,.68) 100%);
+  }
+  /* 画像が読めない場合のフォールバック */
+  .hero.is-empty{min-height:280px;}
+  .hero.is-empty .hero-overlay{background:linear-gradient(135deg,#33506b,#22303d);}
+  @media (max-width:600px){
+    .hero{min-height:230px;margin-bottom:30px;}
+    .hero-img{max-height:300px;}
+    .hero-overlay{padding:24px 20px 22px;}
   }
 
   /* ---- 挿絵プレースホルダ ---- */
   figure.illust{margin:46px 0;padding:0;}
   figure.illust img{display:block;width:100%;height:auto;border-radius:8px;}
-  figure.hero-illust{margin:44px 0 0;}
-  figure.hero-illust img{max-height:360px;object-fit:cover;}
   /* 画像未配置時（is-empty）のプレースホルダ枠 */
   figure.illust .illust-ph{display:none;}
   figure.illust.is-empty{margin:46px 0;}
@@ -240,7 +279,6 @@
     border:1.5px dashed var(--line-strong);border-radius:8px;
     color:var(--ink-soft);font-size:.92rem;line-height:1.7;
   }
-  figure.hero-illust.is-empty .illust-ph{min-height:200px;}
   .illust-ph-file{
     font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     font-size:.8rem;color:var(--accent);font-weight:700;
@@ -271,16 +309,20 @@
 <header class="masthead">
   <div class="wrap">
     <span class="eyebrow">消費税免税制度 改正ガイド</span>
-    <h1>2026年11月・免税「リファンド方式」への移行<br>― 制度の全体像と業界動向</h1>
+
+    <!-- ヒーロー：画像の上にタイトルをオーバーレイ -->
+    <div class="hero">
+      <img class="hero-img" src="images/hero.jpg"
+           alt="日本の空港ターミナル 出発ロビー 免税ショッピングバッグを持つ外国人旅行者 明るく近代的"
+           onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
+      <div class="hero-overlay">
+        <h1>2026年11月・免税「リファンド方式」への移行<br>― 制度の全体像と業界動向</h1>
+      </div>
+    </div>
+
     <p class="lede">2026年11月1日。<br>この日を境に、日本の外国人旅行者向け消費税免税制度は、これまでの「購入時免税」から「リファンド方式（事後還付方式）」へと、大きく姿を変えます。<br>「名前は聞いたことがあるけれど、実際のところ何がどう変わるのか、正直まだ整理できていない」――もしそう感じておられるなら、この記事はきっとお役に立てるはずです。</p>
     <p class="lede">ここでは、制度の根っこにある変更点から始めて、免税に関わる業界全体がどう揺れ動くのか、主要な事業者たちが水面下で何を仕掛けているのか、そしてこの市場に潜む見落としがちな落とし穴まで、順を追って、なるべくかみ砕いてお話ししていきます。<br>焦らず、一緒に地図を広げていきましょう。</p>
     <p class="meta-note">この記事が想定している読者：免税手続きに関わる事業者の方、免税店の実務を担う方、そして「制度改正の全体像をきちんとつかんでおきたい」と考えているすべての方へ。<br>新制度が始まるその日まで、判断のよりどころとして手元に置いていただければ幸いです。</p>
-
-    <figure class="illust hero-illust">
-      <img src="images/hero.jpg" alt="日本の空港ターミナル 出発ロビー 免税ショッピングバッグを持つ外国人旅行者 明るく近代的"
-           onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
-      <span class="illust-ph"><span class="illust-ph-file">images/hero.jpg</span>日本の空港ターミナル 出発ロビー 免税ショッピングバッグを持つ外国人旅行者 明るく近代的</span>
-    </figure>
   </div>
 </header>
 
@@ -333,7 +375,7 @@
 
     <p>つまり、平たく言えば、<strong>悪質な転売による“税の取りこぼし”があまりに深刻になったため、国がついに重い腰を上げ、抜本的な対策として新制度に踏み切った</strong>――これが、今回の改正の本当の背景です。<br>「持ち出しが確認できて、はじめて免税する」という新しい順序は、まさにこの穴をふさぐための設計なのだと考えると、すべてが腑に落ちてくるはずです。</p>
 
-    <div class="note amber">
+    <div class="note">
       <span class="tag">見落とされがちな“もう一つの効果”</span>
       <p>ここで、ぜひ添えておきたい大切な視点があります。<br>この改正は、決して「不正を取り締まるための、後ろ向きな仕組み」だけでは終わっていません。</p>
       <p>新制度では、手続きを電子システムで進めることが前提になります。<br>その結果として、<strong>旅行者から見た免税手続きそのものが、ぐっと簡略化される</strong>のです。<br>ごちゃごちゃした書類のやり取りや、消耗品を特殊な袋で包む手間などが減り、買い物のハードルが下がる。<br>つまり、不正を封じるという“本丸”の目的の裏側で、<strong>旅行者にとっての使いやすさ（ユーザビリティ）の向上</strong>という、うれしいおまけまで付いてきた、というわけです。<br>国にとっては税収を守り、旅行者にとっては買い物がしやすくなる。<br>この両面を持っている、と捉えておくと、制度の見え方がずいぶん立体的になります。</p>
@@ -603,7 +645,7 @@
 
     <p>さて、ここが、この記事でいちばんお伝えしたかった話かもしれません。<br>堅牢なシステムや、利用者に本当に喜ばれるプロダクトを大切に考えておられる方には、とりわけ深く関わってくるところです。<br>業界のメディアが鋭く指摘している、この市場の“構造的な落とし穴”について、少しだけ真剣にお話しさせてください。</p>
 
-    <div class="note amber">
+    <div class="note">
       <span class="tag">見落としてはいけない、構造の話</span>
       <p>国税庁のQ&amp;Aによると、返金業務の委託を受ける事業者は、必ずしも消費税法上の承認免税手続事業者や承認送受信事業者である必要は「ない」とされています。<br>しかも、返金の代理業務だけを行うための、国税庁独自の資格制度も設けられていません。<br>先ほど触れたとおり、協会の一覧も各事業者の申告ベースであって、国が返金について認可や保証をしているわけではない、と明記されています。</p>
     </div>
@@ -645,16 +687,17 @@
     <p>新制度が幕を開けるその日まで、ここで広げた地図が、制度を理解し、業界の動きを見渡すための、確かなよりどころになってくれるはずです。<br>とはいえ、制度の細かな仕様や最新の情報は、これからもどんどん更新されていきます。<br>実務の判断をされる際には、どうか国税庁の特設ページや、全国免税店協会の公開資料といった<strong>一次情報</strong>にも、あわせて目を通すようにしてください。<br>この記事が、その学びの、確かな土台になれたのなら――これほどうれしいことはありません。</p>
   </section>
 
-</div>
-
-<footer>
-  <div class="wrap">
-    <div class="disclaimer">
+  <div class="disclaimer">
       <p style="margin-top:0;"><strong>この記事について</strong></p>
       <p>本稿は、公開情報(国税庁・観光庁・国土交通省の資料、全国免税店協会の公開資料、各社の公式サイトおよびプレスリリース、業界メディア等)をもとに、制度改正の全体像と業界動向を、なるべくかみ砕いて体系的に整理したものです。<br>各社に関する記述は、対外的に公表されている打ち出しや直近の動きにもとづくものであり、内部の設計判断や契約実績を示すものではありません。</p>
       <p>制度の具体的な仕様・手続き・会計処理については、施行に向けて情報が更新される可能性があります。<br>実務の判断にあたっては、国税庁「輸出物品販売場制度のリファンド方式への見直し」をはじめとする一次情報をご確認ください。<br>掲載事業者の一覧は2025年10月時点の公開資料にもとづく整理であり、最新の状況は協会の特設サイトで更新されます。</p>
     </div>
-    <p style="margin-top:20px;">消費税免税制度「リファンド方式」改正ガイド ／ 施行日：2026年11月1日</p>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>消費税免税制度「リファンド方式」改正ガイド ／ 施行日：2026年11月1日</p>
   </div>
 </footer>
 
