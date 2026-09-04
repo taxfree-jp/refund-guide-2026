@@ -280,18 +280,16 @@
 
   /* ================= アニメーション（本家式：単一直列パイプライン） ================= */
   /* フェードイン対象：初期は透明+16px下、is-visibleで所定位置へ */
-  .fade-in-target{opacity:0;transform:translateY(16px);transition:opacity .9s ease-out,transform .9s ease-out;}
-  .fade-in-target.is-visible{opacity:1;transform:translateY(0);}
   /* transitionを一時的に無効化（前状態のチラつき防止） */
-  .no-transition{transition:none !important;}
-  /* タイピング中のキャレット */
-  .type-caret{display:inline-block;width:.06em;border-right:2px solid var(--accent);
-    margin-left:1px;animation:caretblink .9s step-end infinite;vertical-align:baseline;}
-  @keyframes caretblink{50%{border-color:transparent;}}
+  /* タイピング中のキャレット */}
   /* モーション低減設定では即時表示 */
+  }
+
+  /* ================= フェードイン（本家と同一方式・要素ごと独立） ================= */
+  .fade-in-target{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease;}
+  .fade-in-target.is-visible{opacity:1;transform:translateY(0);}
   @media (prefers-reduced-motion:reduce){
     .fade-in-target{opacity:1;transform:none;transition:none;}
-    .type-caret{display:none;}
   }
 </style>
 </head>
@@ -301,11 +299,11 @@
   <div class="wrap">
     <span class="eyebrow">消費税免税制度 改正ガイド</span>
     <h1 class="">2026年11月・免税「リファンド方式」への移行<br>― 制度の全体像と業界動向</h1>
-    <p class="lede">2026年11月1日。この日を境に、日本の外国人旅行者向け消費税免税制度は、これまでの「購入時免税」から「リファンド方式（事後還付方式）」へと、大きく姿を変えます。「名前は聞いたことがあるけれど、実際のところ何がどう変わるのか、正直まだ整理できていない」――もしそう感じておられるなら、この記事はきっとお役に立てるはずです。</p>
-    <p class="lede">ここでは、制度の根っこにある変更点から始めて、免税に関わる業界全体がどう揺れ動くのか、主要な事業者たちが水面下で何を仕掛けているのか、そしてこの市場に潜む見落としがちな落とし穴まで、順を追って、なるべくかみ砕いてお話ししていきます。焦らず、一緒に地図を広げていきましょう。</p>
-    <p class="meta-note">この記事が想定している読者：免税手続きに関わる事業者の方、免税店の実務を担う方、そして「制度改正の全体像をきちんとつかんでおきたい」と考えているすべての方へ。新制度が始まるその日まで、判断のよりどころとして手元に置いていただければ幸いです。</p>
+    <p class="lede fade-in-target">2026年11月1日。この日を境に、日本の外国人旅行者向け消費税免税制度は、これまでの「購入時免税」から「リファンド方式（事後還付方式）」へと、大きく姿を変えます。「名前は聞いたことがあるけれど、実際のところ何がどう変わるのか、正直まだ整理できていない」――もしそう感じておられるなら、この記事はきっとお役に立てるはずです。</p>
+    <p class="lede fade-in-target">ここでは、制度の根っこにある変更点から始めて、免税に関わる業界全体がどう揺れ動くのか、主要な事業者たちが水面下で何を仕掛けているのか、そしてこの市場に潜む見落としがちな落とし穴まで、順を追って、なるべくかみ砕いてお話ししていきます。焦らず、一緒に地図を広げていきましょう。</p>
+    <p class="meta-note fade-in-target">この記事が想定している読者：免税手続きに関わる事業者の方、免税店の実務を担う方、そして「制度改正の全体像をきちんとつかんでおきたい」と考えているすべての方へ。新制度が始まるその日まで、判断のよりどころとして手元に置いていただければ幸いです。</p>
 
-    <figure class="illust hero-illust">
+    <figure class="illust hero-illust fade-in-target">
       <img src="images/hero.jpg" alt="日本の空港ターミナル 出発ロビー 免税ショッピングバッグを持つ外国人旅行者 明るく近代的"
            onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
       <span class="illust-ph"><span class="illust-ph-file">images/hero.jpg</span>日本の空港ターミナル 出発ロビー 免税ショッピングバッグを持つ外国人旅行者 明るく近代的</span>
@@ -318,21 +316,21 @@
   <nav class="toc" aria-label="目次">
     <h2>目次</h2>
     <ol>
-      <li><a href="#s1">そもそも“リファンド方式”とは何なのか？ ― 何が根本から変わるのか</a></li>
-      <li><a href="#s2">あなたのお店では、具体的に何が変わるのか</a></li>
-      <li><a href="#s3">“手続委託型がなくなる”― これ、本当に仕事が消えるという意味でしょうか？</a></li>
-      <li><a href="#s4">なぜ、免税に関わるすべての事業者が対応を迫られるのか？</a></li>
-      <li><a href="#s5">ライバル各社は、いま何を仕掛けているのか</a></li>
-      <li><a href="#s6">あの一覧に並ぶ、8つの顔ぶれ</a></li>
-      <li><a href="#s7">この市場に潜む“落とし穴”に、あなたは気づいていますか？</a></li>
-      <li><a href="#s8">結局、11月までに何を指標にすればいいのか</a></li>
+      <li class=""><a href="#s1">そもそも“リファンド方式”とは何なのか？ ― 何が根本から変わるのか</a></li>
+      <li class=""><a href="#s2">あなたのお店では、具体的に何が変わるのか</a></li>
+      <li class=""><a href="#s3">“手続委託型がなくなる”― これ、本当に仕事が消えるという意味でしょうか？</a></li>
+      <li class=""><a href="#s4">なぜ、免税に関わるすべての事業者が対応を迫られるのか？</a></li>
+      <li class=""><a href="#s5">ライバル各社は、いま何を仕掛けているのか</a></li>
+      <li class=""><a href="#s6">あの一覧に並ぶ、8つの顔ぶれ</a></li>
+      <li class=""><a href="#s7">この市場に潜む“落とし穴”に、あなたは気づいていますか？</a></li>
+      <li class=""><a href="#s8">結局、11月までに何を指標にすればいいのか</a></li>
     </ol>
   </nav>
 
   <!-- ============ 1 ============ -->
   <section id="s1">
-    <h2 class="sec"><span class="sec-num">SECTION 1</span>そもそも“リファンド方式”とは何なのか？ ― 何が根本から変わるのか</h2>
-    <figure class="illust">
+    <h2 class="sec fade-in-target"><span class="sec-num">SECTION 1</span>そもそも“リファンド方式”とは何なのか？ ― 何が根本から変わるのか</h2>
+    <figure class="illust fade-in-target">
       <img src="images/illust-01.jpg" alt="税関カウンター パスポートとレシートを確認する様子 チェックマーク 還付のイメージ フラットイラスト"
            onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
       <span class="illust-ph"><span class="illust-ph-file">images/illust-01.jpg</span>税関カウンター パスポートとレシートを確認する様子 チェックマーク 還付のイメージ フラットイラスト</span>
@@ -342,12 +340,12 @@
 
     <p class="">いまの制度（2026年10月まで）では、免税店は外国人旅行者に対して、税抜価格――つまり免税された価格で商品を売っています。お店で会計を済ませたその瞬間に、免税が完了しているわけですね。ところが2026年11月1日からは、この流れが次のように変わります。少し丁寧に、順を追ってみましょう。</p>
 
-    <ol class="flow">
-      <li>お店では、旅行者に<strong>税込価格（課税価格）</strong>で商品を販売します。つまり、旅行者はこの時点でいったん消費税を支払うことになります。</li>
-      <li>旅行者は、購入した日から<strong>90日以内</strong>に日本を出国します。</li>
-      <li>出国のとき、空港などの税関で「この商品を、確かに国外へ持ち出しますね」という確認を受けます。</li>
-      <li>その持ち出しが確認された、という情報（税関確認情報）が、お店側へ届きます。</li>
-      <li>それを受けて、お店が旅行者へ<strong>消費税相当額を返金（リファンド）</strong>します。</li>
+    <ol class="flow fade-in-target">
+      <li class="fade-in-target">お店では、旅行者に<strong>税込価格（課税価格）</strong>で商品を販売します。つまり、旅行者はこの時点でいったん消費税を支払うことになります。</li>
+      <li class="fade-in-target">旅行者は、購入した日から<strong>90日以内</strong>に日本を出国します。</li>
+      <li class="fade-in-target">出国のとき、空港などの税関で「この商品を、確かに国外へ持ち出しますね」という確認を受けます。</li>
+      <li class="fade-in-target">その持ち出しが確認された、という情報（税関確認情報）が、お店側へ届きます。</li>
+      <li class="fade-in-target">それを受けて、お店が旅行者へ<strong>消費税相当額を返金（リファンド）</strong>します。</li>
     </ol>
 
     <p class="">お気づきでしょうか。従来との決定的な違いは、免税が成立するのが<strong>「出国時に、持ち出しが確認されたあと」</strong>になる、という点です。「売った瞬間に免税」ではなく、「持ち出しが確認されて、はじめて免税が成立する」。この順序の逆転こそが、新制度のいちばんの背骨だと思ってください。</p>
@@ -362,7 +360,7 @@
 
     <p class="">つまり、平たく言えば、<strong>悪質な転売による“税の取りこぼし”があまりに深刻になったため、国がついに重い腰を上げ、抜本的な対策として新制度に踏み切った</strong>――これが、今回の改正の本当の背景です。「持ち出しが確認できて、はじめて免税する」という新しい順序は、まさにこの穴をふさぐための設計なのだと考えると、すべてが腑に落ちてくるはずです。</p>
 
-    <div class="callout reader">
+    <div class="callout reader fade-in-target">
       <span class="tag">見落とされがちな“もう一つの効果”</span>
       <p class="">ここで、ぜひ添えておきたい大切な視点があります。この改正は、決して「不正を取り締まるための、後ろ向きな仕組み」だけでは終わっていません。</p>
       <p class="">新制度では、手続きを電子システムで進めることが前提になります。その結果として、<strong>旅行者から見た免税手続きそのものが、ぐっと簡略化される</strong>のです。ごちゃごちゃした書類のやり取りや、消耗品を特殊な袋で包む手間などが減り、買い物のハードルが下がる。つまり、不正を封じるという“本丸”の目的の裏側で、<strong>旅行者にとっての使いやすさ（ユーザビリティ）の向上</strong>という、うれしいおまけまで付いてきた、というわけです。国にとっては税収を守り、旅行者にとっては買い物がしやすくなる。この両面を持っている、と捉えておくと、制度の見え方がずいぶん立体的になります。</p>
@@ -371,8 +369,8 @@
 
   <!-- ============ 2 ============ -->
   <section id="s2">
-    <h2 class="sec"><span class="sec-num">SECTION 2</span>あなたのお店では、具体的に何が変わるのか</h2>
-    <figure class="illust">
+    <h2 class="sec fade-in-target"><span class="sec-num">SECTION 2</span>あなたのお店では、具体的に何が変わるのか</h2>
+    <figure class="illust fade-in-target">
       <img src="images/illust-02.jpg" alt="小売店のレジ 会計 レシート 税込表示 ビフォーアフター 対比 シンプルイラスト"
            onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
       <span class="illust-ph"><span class="illust-ph-file">images/illust-02.jpg</span>小売店のレジ 会計 レシート 税込表示 ビフォーアフター 対比 シンプルイラスト</span>
@@ -408,7 +406,7 @@
 
     <h3 class="">“別送”と“直送”――似ているけれど、まるで別物</h3>
     <p class="">言葉がよく似ているので混同されがちですが、この2つは扱いがまったく違います。ここは表で、すっきり整理しておきましょう。</p>
-    <div class="table-scroll">
+    <div class="table-scroll fade-in-target">
       <table>
         <caption>「別送」と「直送」の違い</caption>
         <thead>
@@ -429,7 +427,7 @@
       </table>
     </div>
 
-    <div class="callout">
+    <div class="callout fade-in-target">
       <span class="tag">ここだけは、絶対に押さえてください</span>
       <p class="">新制度への移行には、<strong>“お試し期間”や“併用期間”が一切ありません</strong>。2026年10月31日の営業が終わったその瞬間、翌11月1日からは、もう新制度一本に切り替わります。「しばらくは古いやり方も使える」という猶予は、ないのです。ですから、11月以降も免税販売を続けたいのであれば、その日までにリファンド方式への対応を、必ず終わらせておかなければなりません。もし準備が間に合わなければ、11月からは<strong>そもそも免税販売ができなくなってしまう</strong>――これは、どうか本気で受け止めておいてください。</p>
     </div>
@@ -437,8 +435,8 @@
 
   <!-- ============ 3 ============ -->
   <section id="s3">
-    <h2 class="sec"><span class="sec-num">SECTION 3</span>“手続委託型がなくなる”― これ、本当に仕事が消えるという意味でしょうか？</h2>
-    <figure class="illust">
+    <h2 class="sec fade-in-target"><span class="sec-num">SECTION 3</span>“手続委託型がなくなる”― これ、本当に仕事が消えるという意味でしょうか？</h2>
+    <figure class="illust fade-in-target">
       <img src="images/illust-03.jpg" alt="2つの歯車が噛み合う 委託・連携のイメージ ビジネス握手 抽象的 緑基調"
            onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
       <span class="illust-ph"><span class="illust-ph-file">images/illust-03.jpg</span>2つの歯車が噛み合う 委託・連携のイメージ ビジネス握手 抽象的 緑基調</span>
@@ -448,7 +446,7 @@
 
     <p class="">結論から申し上げます。<strong>「手続委託型という“お店の区分”はなくなる。けれども、委託を受けて手続きを代行するという“事業そのもの”は、なくならない」</strong>――これが正確な理解です。この2つは、まったく別の話なのです。</p>
 
-    <div class="keypoints">
+    <div class="keypoints fade-in-target">
       <span class="tag">いちばん大事なところ</span>
       <p class="">消えてなくなるのは、あくまで<strong>免税店の「店舗カテゴリー」</strong>としての手続委託型です。委託して手続きを代わりにやってもらう、という仕組みそのものは、制度としてしっかり生き残ります。「区分の統廃合」と「業務の廃止」を、どうか切り分けて考えてください。</p>
     </div>
@@ -460,7 +458,7 @@
     <h3 class="">委託を受ける事業者が担う“2つの顔”</h3>
     <p class="">では、新制度のもとで、委託を受ける事業者は具体的にどんな役割を担うのでしょうか。大きく2つの顔に整理できます。</p>
 
-    <div class="table-scroll">
+    <div class="table-scroll fade-in-target">
       <table>
         <thead>
           <tr><th>役割（顔）</th><th>どんな仕事か</th></tr>
@@ -483,8 +481,8 @@
 
   <!-- ============ 4 ============ -->
   <section id="s4">
-    <h2 class="sec"><span class="sec-num">SECTION 4</span>なぜ、免税に関わるすべての事業者が対応を迫られるのか？</h2>
-    <figure class="illust">
+    <h2 class="sec fade-in-target"><span class="sec-num">SECTION 4</span>なぜ、免税に関わるすべての事業者が対応を迫られるのか？</h2>
+    <figure class="illust fade-in-target">
       <img src="images/illust-04.jpg" alt="つながるネットワーク図 店舗・データ・決済・税関のノード 双方向の矢印 バリューチェーン"
            onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
       <span class="illust-ph"><span class="illust-ph-file">images/illust-04.jpg</span>つながるネットワーク図 店舗・データ・決済・税関のノード 双方向の矢印 バリューチェーン</span>
@@ -507,7 +505,7 @@
 
     <h3 class="">つまり、こういう顔ぶれ全員が“当事者”になる</h3>
     <p class="">ここまでの話を、いちど全体像として並べてみましょう。この改正で対応を迫られるのは、次のような面々です。</p>
-    <div class="table-scroll">
+    <div class="table-scroll fade-in-target">
       <table>
         <thead>
           <tr><th>立場</th><th>迫られる対応</th></tr>
@@ -526,8 +524,8 @@
 
   <!-- ============ 5 ============ -->
   <section id="s5">
-    <h2 class="sec"><span class="sec-num">SECTION 5</span>ライバル各社は、いま何を仕掛けているのか</h2>
-    <figure class="illust">
+    <h2 class="sec fade-in-target"><span class="sec-num">SECTION 5</span>ライバル各社は、いま何を仕掛けているのか</h2>
+    <figure class="illust fade-in-target">
       <img src="images/illust-05.jpg" alt="複数の企業がチェス盤を囲む 戦略 競争 俯瞰視点 ビジネス抽象イラスト"
            onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
       <span class="illust-ph"><span class="illust-ph-file">images/illust-05.jpg</span>複数の企業がチェス盤を囲む 戦略 競争 俯瞰視点 ビジネス抽象イラスト</span>
@@ -558,7 +556,7 @@
 
     <h3 class="">ひと歩さがって眺めると――戦略は3つの流れに分かれる</h3>
     <p class="">各社の動きを、少し高いところから見下ろしてみると、戦略が大きく3つの流れに分かれていることが見えてきます。整理してみましょう。</p>
-    <div class="table-scroll">
+    <div class="table-scroll fade-in-target">
       <table>
         <thead>
           <tr><th>流れ</th><th>基本の考え方</th><th>代表的なプレイヤー</th></tr>
@@ -574,8 +572,8 @@
 
   <!-- ============ 6 ============ -->
   <section id="s6">
-    <h2 class="sec"><span class="sec-num">SECTION 6</span>あの一覧に並ぶ、8つの顔ぶれ</h2>
-    <figure class="illust">
+    <h2 class="sec fade-in-target"><span class="sec-num">SECTION 6</span>あの一覧に並ぶ、8つの顔ぶれ</h2>
+    <figure class="illust fade-in-target">
       <img src="images/illust-06.jpg" alt="事業者リストの一覧表 ランキング 上位グループがハイライトされた表 クリーンなUI"
            onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
       <span class="illust-ph"><span class="illust-ph-file">images/illust-06.jpg</span>事業者リストの一覧表 ランキング 上位グループがハイライトされた表 クリーンなUI</span>
@@ -587,7 +585,7 @@
     <h3 class="">顔ぶれを、実際に並べてみると(2025年10月時点)</h3>
     <p class="">この一覧には、返金対応の型(対応A・B・C)と、購入記録情報を送るための対応端末が、事業者ごとに書き添えられています。掲載されている顔ぶれを、整理してみましょう(申告順)。</p>
 
-    <div class="table-scroll">
+    <div class="table-scroll fade-in-target">
       <table>
         <caption>返金に対応予定の承認送信事業者一覧(2025年10月時点／協会の公開資料をもとに整理)</caption>
         <thead>
@@ -623,8 +621,8 @@
 
   <!-- ============ 7 ============ -->
   <section id="s7">
-    <h2 class="sec"><span class="sec-num">SECTION 7</span>この市場に潜む“落とし穴”に、あなたは気づいていますか？</h2>
-    <figure class="illust">
+    <h2 class="sec fade-in-target"><span class="sec-num">SECTION 7</span>この市場に潜む“落とし穴”に、あなたは気づいていますか？</h2>
+    <figure class="illust fade-in-target">
       <img src="images/illust-07.jpg" alt="盾とセキュリティの錠前 信頼 データ保護 慎重に道を選ぶ人物 注意喚起 落ち着いた警告色"
            onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
       <span class="illust-ph"><span class="illust-ph-file">images/illust-07.jpg</span>盾とセキュリティの錠前 信頼 データ保護 慎重に道を選ぶ人物 注意喚起 落ち着いた警告色</span>
@@ -632,7 +630,7 @@
 
     <p class="">さて、ここが、この記事でいちばんお伝えしたかった話かもしれません。堅牢なシステムや、利用者に本当に喜ばれるプロダクトを大切に考えておられる方には、とりわけ深く関わってくるところです。業界のメディアが鋭く指摘している、この市場の“構造的な落とし穴”について、少しだけ真剣にお話しさせてください。</p>
 
-    <div class="callout risk">
+    <div class="callout risk fade-in-target">
       <span class="tag">見落としてはいけない、構造の話</span>
       <p class="">国税庁のQ&amp;Aによると、返金業務の委託を受ける事業者は、必ずしも消費税法上の承認免税手続事業者や承認送受信事業者である必要は「ない」とされています。しかも、返金の代理業務だけを行うための、国税庁独自の資格制度も設けられていません。先ほど触れたとおり、協会の一覧も各事業者の申告ベースであって、国が返金について認可や保証をしているわけではない、と明記されています。</p>
     </div>
@@ -644,7 +642,7 @@
     <h3 class="">この“落とし穴”が、逆に教えてくれること</h3>
     <p class="">では、この構造をどう受け止めればいいのでしょう。ここで、ものの見方をくるりと裏返してみましょう。市場全体が「国のお墨付きがないまま、お店が自己責任で委託先を選ぶ」という構造になっている――ということは、最終的にものを言うのは、たった一つ。<strong>「信頼」</strong>です。セキュリティ、資金の管理、障害時の対応、個人情報の保護。こうしたところで信頼を勝ち取れる事業者だけが、選ばれていく。そういう市場なのです。</p>
 
-    <div class="keypoints">
+    <div class="keypoints fade-in-target">
       <span class="tag">だからこそ、ここが効いてくる</span>
       <p class="">裏を返せば、長い時間をかけて積み上げてきた、事故のない安定運用の実績は、決済大手の資金力や、グローバルな運用実績とは<strong>まったく別の軸で、とてつもなく強い説得材料</strong>になり得る、ということです。一方で――ここで信頼を裏切るような事故を一度でも起こしてしまえば、その最大の武器が、一瞬にして崩れ去るリスクでもあります。つまりこの市場において、「堅牢であること」は、単なる技術的な要件などではありません。それは<strong>“選ばれる理由”そのもの</strong>なのです。この一点は、どうか胸に刻んでおいてください。</p>
     </div>
@@ -652,8 +650,8 @@
 
   <!-- ============ 8 ============ -->
   <section id="s8">
-    <h2 class="sec"><span class="sec-num">SECTION 8</span>結局、11月までに何を指標にすればいいのか</h2>
-    <figure class="illust">
+    <h2 class="sec fade-in-target"><span class="sec-num">SECTION 8</span>結局、11月までに何を指標にすればいいのか</h2>
+    <figure class="illust fade-in-target">
       <img src="images/illust-08.jpg" alt="羅針盤 地図 ゴールに向かう道 2026年11月のカレンダー 前向きなまとめ"
            onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
       <span class="illust-ph"><span class="illust-ph-file">images/illust-08.jpg</span>羅針盤 地図 ゴールに向かう道 2026年11月のカレンダー 前向きなまとめ</span>
@@ -691,174 +689,26 @@
 
 
 
+
 <script>
-// ═══════════════════════════════════════════
-//  免税リファンド方式ガイド — Reader Animation
-//  「新時代のWebライティング」と同じ単一直列パイプライン方式
-// ═══════════════════════════════════════════
+// フェードイン：各要素が画面に入ったら一度だけ is-visible を付ける（本家と同じ挙動・要素独立）
 (function(){
   "use strict";
-
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // 演出対象を「文書順」で収集
-  // type = 段落・箇条書き（タイピング） / fade = 見出し・画像・表・囲み（フェードイン）
-  var container = document.querySelector('.wrap');
-  var toc = document.querySelector('nav.toc');
-
-  // 対象セレクタ（目次nav内は除外）
-  var selector = 'h1, h2.sec, h3, figure.illust, p.lede, p.meta-note, '
-               + 'section p, .callout p, .keypoints p, '
-               + 'section ul, .callout ul, section ol.flow, '
-               + '.table-scroll, .callout, .keypoints';
-
-  // NodeListを文書順の配列へ。重複（callout内pとcallout自体など）を避けるため、
-  // 「フェード対象コンテナ（callout/keypoints/table-scroll/figure/ul/ol/見出し）」と
-  // 「タイプ対象（p, li）」を整理して集める。
-  var all = Array.prototype.slice.call(document.querySelectorAll(
-    'h1, p.lede, p.meta-note, figure.illust, '
-    + 'h2.sec, h3, '
-    + '.table-scroll, .callout, .keypoints, '
-    + 'ol.flow, '
-    + 'section > p, section > ul'
-  ));
-  // 文書順を保証（querySelectorAllは文書順だが、複数呼び出しではないのでOK）
-
-  // callout/keypoints は「箱ごとフェード」。中のpは個別タイプにすると二重になるので、
-  // 箱をフェード対象にしたら中身はそのまま（タイプしない）。
-  // → 上のセレクタは section 直下の p / ul のみタイプ対象にしている点がミソ。
-
-  if(reduceMotion || all.length === 0){
-    all.forEach(function(el){ el.classList.remove('fade-in-target'); });
-    return; // 即時表示（何もしない）
+  var targets = document.querySelectorAll('.fade-in-target');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce || !('IntersectionObserver' in window)){
+    targets.forEach(function(el){ el.classList.add('is-visible'); });
+    return;
   }
-
-  // ─ ユーティリティ ─
-  var _timers = [];
-  function wait(ms){
-    return new Promise(function(resolve){
-      var t = setTimeout(resolve, ms);
-      _timers.push(t);
-    });
-  }
-
-  // 要素が画面に入るまで待つ（本家 waitForVisible と同じ）
-  function waitForVisible(el){
-    return new Promise(function(resolve){
-      var rect = el.getBoundingClientRect();
-      if(rect.top < window.innerHeight * 0.85){ resolve(); return; }
-      var obs = new IntersectionObserver(function(entries){
-        if(entries[0].isIntersecting){ obs.disconnect(); resolve(); }
-      }, { threshold: 0.01 });
-      obs.observe(el);
-    });
-  }
-
-  // HTML（タグ混じり）を、タグは即時・文字は1文字ずつタイピング（本家 typeHTML と同じ）
-  function typeHTML(el, html, charDelay, periodPause){
-    return new Promise(function(resolve){
-      var tokens = html.split(/(<[^>]+>)/g).filter(function(t){ return t.length > 0; });
-      var ti = 0, ci = 0, chars = [];
-      var out = '';
-      var caret = document.createElement('span');
-      caret.className = 'type-caret';
-      el.appendChild(caret);
-
-      function render(){
-        el.innerHTML = out;
-        el.appendChild(caret);
-      }
-      function finish(){
-        el.innerHTML = out;
-        resolve();
-      }
-      function next(){
-        if(ti >= tokens.length){ finish(); return; }
-        var token = tokens[ti];
-        if(token.charAt(0) === '<'){
-          out += token; render(); ti++; next(); return;
-        }
-        if(ci === 0) chars = Array.from(token);
-        if(ci >= chars.length){ ti++; ci = 0; next(); return; }
-        var ch = chars[ci];
-        out += ch; render(); ci++;
-        var d = charDelay;
-        if(ch === '。' || ch === '！' || ch === '？') d = periodPause;
-        else if(ch === '、' || ch === '\n') d = Math.round(periodPause * 0.35);
-        var t = setTimeout(next, d);
-        _timers.push(t);
-      }
-      next();
-    });
-  }
-
-  // タイプ対象かどうか（section直下のp / callout内でない独立p / li）
-  function isTypeTarget(el){
-    var tag = el.tagName.toLowerCase();
-    if(tag === 'p'){
-      if(el.classList.contains('lede') || el.classList.contains('meta-note')) return false; // ヘッダー導入はフェード
-      // callout/keypoints 内の p は箱ごとフェードなので除外
-      if(el.closest('.callout') || el.closest('.keypoints')) return false;
-      return true;
-    }
-    return false;
-  }
-
-  // ─ メイン：単一直列パイプライン ─
-  async function run(){
-    // 事前に全対象を隠す（フェード対象は fade-in-target、タイプ対象p は中身退避）
-    var typePayload = new WeakMap();
-    all.forEach(function(el){
-      if(isTypeTarget(el)){
-        typePayload.set(el, el.innerHTML);
-        el.innerHTML = '';
-        el.classList.add('fade-in-target'); // opacity:0 で確保（タイプ開始時にis-visible）
-      } else {
-        el.classList.add('fade-in-target');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);   // 一度きり
       }
     });
-
-    // section直下の ul（箇条書き）は、li を1つずつタイプする。
-    // → all に含めた ul は「箱」をフェードせず、li を個別処理する。
-    for(var idx=0; idx<all.length; idx++){
-      var el = all[idx];
-      var tag = el.tagName.toLowerCase();
-
-      await waitForVisible(el);
-
-      if(isTypeTarget(el)){
-        // 段落タイピング
-        el.classList.add('is-visible');
-        el.classList.remove('fade-in-target'); // 透明化解除（中身はまだ空）
-        el.style.opacity = '1'; el.style.transform = 'none';
-        await typeHTML(el, typePayload.get(el) || '', 30, 400);
-        await wait(120);
-      } else if(tag === 'ul' && el.closest('section') && !el.closest('.callout') && !el.closest('.keypoints')){
-        // 箇条書き：箱は見せて、li を1つずつタイプ
-        el.classList.add('is-visible');
-        var items = Array.prototype.slice.call(el.children).filter(function(c){ return c.tagName.toLowerCase()==='li'; });
-        for(var li of items){
-          var liHtml = li.innerHTML;
-          li.innerHTML = '';
-          li.classList.add('fade-in-target');
-          await waitForVisible(li);
-          li.classList.add('is-visible');
-          li.style.opacity='1'; li.style.transform='none';
-          await typeHTML(li, liHtml, 30, 400);
-          await wait(160);
-        }
-        await wait(120);
-      } else {
-        // フェードイン（見出し・画像・表・囲み・番号フロー）
-        await wait(40);
-        el.classList.add('is-visible');
-        await wait(300);
-      }
-    }
-  }
-
-  // 開始
-  requestAnimationFrame(function(){ requestAnimationFrame(run); });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  targets.forEach(function(el){ io.observe(el); });
 })();
 </script>
 </body>
