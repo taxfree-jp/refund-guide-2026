@@ -94,8 +94,8 @@
   h2.sec{
     font-size:1.5rem;
     margin:76px 0 26px;
-    padding-bottom:14px;
-    border-bottom:2px solid var(--rule);
+    padding-bottom:8px;
+    border-bottom:3px solid var(--accent);
     line-height:1.5;
     font-weight:800;
   }
@@ -160,31 +160,22 @@
 
   /* ---- 補足ノート（上下線で挟むデザイン） ---- */
   .note{
-    margin:56px auto;
-    max-width:86%;
-    padding:34px 0 36px;
-    border-top:1px solid var(--line-strong);
-    border-bottom:1px solid var(--line-strong);
-    position:relative;
+    margin:56px 0;
+    padding:30px 0 32px;
+    border-top:1px solid var(--accent);
+    border-bottom:1px solid var(--accent);
   }
-  /* 上下線の中央に細いアクセント線を重ね、締まった印象に */
-  .note::before,.note::after{
-    content:"";position:absolute;left:50%;transform:translateX(-50%);
-    width:64px;height:3px;background:var(--accent);border-radius:2px;
-  }
-  .note::before{top:-2px;}
-  .note::after{bottom:-2px;}
-  .note.amber::before,.note.amber::after{background:var(--amber);}
   .note .tag{
-    display:block;text-align:center;
+    display:block;text-align:left;
     font-size:.8rem;font-weight:700;letter-spacing:.08em;
     color:var(--accent);margin-bottom:18px;
   }
+  .note.amber{border-top-color:var(--amber);border-bottom-color:var(--amber);}
   .note.amber .tag{color:var(--amber);}
   .note p:first-of-type{margin-top:0;}
   .note p:last-child{margin-bottom:0;}
   @media (max-width:600px){
-    .note{max-width:100%;padding:28px 0 30px;margin:44px auto;}
+    .note{padding:26px 0 28px;margin:44px 0;}
   }
 
   /* ---- Flow ---- */
