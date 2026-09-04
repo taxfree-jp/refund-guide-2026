@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026年11月・免税「リファンド方式」への移行 ― 制度の全体像と業界動向</title>
+<style>
+  :root{
+    --ink:#1c1a17;
+    --ink-soft:#4a453e;
+    --paper:#ffffff;
+    --panel:#fbfaf8;
+    --line:#e3ddd2;
+    --line-strong:#c9c0b1;
+    --accent:#1f5c4d;      /* 深い緑 ― 税・信頼・落ち着き */
+    --accent-soft:#eaf1ee;
+    --amber:#8a6a1f;       /* 注意・論点の色 */
+    --amber-soft:#f6efdd;
+    --rule:#b8ad9a;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Meiryo",system-ui,sans-serif;
+    line-height:1.95;
+    font-size:17px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px;}
+
+  /* ---- Header ---- */
+  header.masthead{
+    border-top:6px solid var(--accent);
+    background:var(--panel);
+    border-bottom:1px solid var(--line);
+  }
+  .masthead .wrap{padding:54px 22px 40px;}
+  .eyebrow{
+    display:inline-block;
+    color:var(--accent);
+    font-weight:700;
+    font-size:.82rem;
+    letter-spacing:.04em;
+    border:1px solid var(--accent);
+    border-radius:2px;
+    padding:3px 10px;
+    margin-bottom:22px;
+  }
+  h1{
+    font-size:2.15rem;
+    line-height:1.4;
+    margin:0 0 18px;
+    font-weight:800;
+    letter-spacing:.01em;
+  }
+  .lede{
+    font-size:1.06rem;
+    color:var(--ink-soft);
+    margin:0 0 14px;
+  }
+  .lede:last-of-type{margin-bottom:0;}
+  .meta-note{
+    margin-top:26px;
+    padding-top:18px;
+    border-top:1px dashed var(--line-strong);
+    font-size:.9rem;
+    color:var(--ink-soft);
+  }
+
+  /* ---- Table of contents ---- */
+  nav.toc{
+    background:var(--accent-soft);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:24px 28px;
+    margin:38px 0;
+  }
+  nav.toc h2{
+    font-size:1rem;
+    margin:0 0 14px;
+    color:var(--accent);
+    letter-spacing:.02em;
+  }
+  nav.toc ol{margin:0;padding-left:1.3em;}
+  nav.toc li{margin:9px 0;line-height:1.6;}
+  nav.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;}
+  nav.toc a:hover{border-bottom-color:var(--accent);}
+
+  /* ---- Sections ---- */
+  section{padding:16px 0 8px;}
+  h2.sec{
+    font-size:1.5rem;
+    margin:52px 0 6px;
+    padding-bottom:14px;
+    border-bottom:2px solid var(--rule);
+    line-height:1.5;
+    font-weight:800;
+  }
+  .sec-num{
+    display:block;
+    font-size:.82rem;
+    font-weight:700;
+    color:var(--accent);
+    letter-spacing:.08em;
+    margin-bottom:8px;
+  }
+  h3{
+    font-size:1.2rem;
+    margin:36px 0 10px;
+    font-weight:700;
+    padding-left:14px;
+    border-left:4px solid var(--accent);
+    line-height:1.55;
+  }
+  h4{
+    font-size:1.02rem;
+    margin:24px 0 6px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  p{margin:16px 0;}
+  strong{font-weight:700;}
+  ul,ol{margin:16px 0;padding-left:1.4em;}
+  li{margin:9px 0;}
+
+  /* ---- Tables ---- */
+  .table-scroll{overflow-x:auto;margin:24px 0;}
+  table{
+    border-collapse:collapse;
+    width:100%;
+    font-size:.94rem;
+    background:var(--panel);
+  }
+  caption{
+    text-align:left;
+    font-size:.86rem;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+    font-weight:700;
+  }
+  th,td{
+    border:1px solid var(--line);
+    padding:10px 12px;
+    text-align:left;
+    vertical-align:top;
+  }
+  thead th{
+    background:var(--accent);
+    color:#fff;
+    font-weight:700;
+    border-color:var(--accent);
+  }
+  tbody tr:nth-child(even){background:#f6f5f2;}
+  td.center,th.center{text-align:center;}
+  .tier1{font-weight:700;}
+  .tier1 td:first-child{border-left:4px solid var(--accent);}
+
+  /* ---- Callouts ---- */
+  .callout{
+    border:1px solid var(--line-strong);
+    border-left:5px solid var(--accent);
+    background:var(--panel);
+    border-radius:5px;
+    padding:18px 22px;
+    margin:28px 0;
+  }
+  .callout.reader{
+    border-left-color:var(--amber);
+    background:var(--amber-soft);
+  }
+  .callout.risk{
+    border-left-color:var(--amber);
+  }
+  .callout .tag{
+    display:block;
+    font-size:.8rem;
+    font-weight:700;
+    letter-spacing:.03em;
+    margin-bottom:6px;
+    color:var(--accent);
+  }
+  .callout.reader .tag,.callout.risk .tag{color:var(--amber);}
+  .callout p:first-of-type{margin-top:0;}
+  .callout p:last-child{margin-bottom:0;}
+
+  /* ---- Key-point strip ---- */
+  .keypoints{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:20px 26px;
+    margin:26px 0;
+  }
+  .keypoints .tag{font-weight:700;color:var(--accent);font-size:.9rem;display:block;margin-bottom:6px;}
+  .keypoints p:last-child{margin-bottom:0;}
+
+  /* ---- Flow ---- */
+  ol.flow{counter-reset:step;list-style:none;padding-left:0;margin:22px 0;}
+  ol.flow > li{
+    position:relative;
+    padding:12px 12px 12px 52px;
+    border-bottom:1px solid var(--line);
+    margin:0;
+  }
+  ol.flow > li:last-child{border-bottom:none;}
+  ol.flow > li::before{
+    counter-increment:step;
+    content:counter(step);
+    position:absolute;left:10px;top:12px;
+    width:30px;height:30px;
+    background:var(--accent);color:#fff;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:.9rem;
+  }
+
+  /* ---- Footer ---- */
+  footer{
+    margin-top:60px;
+    border-top:1px solid var(--line);
+    background:var(--panel);
+  }
+  footer .wrap{padding:30px 22px 50px;}
+  footer p{font-size:.86rem;color:var(--ink-soft);margin:8px 0;}
+  .disclaimer{
+    border:1px dashed var(--line-strong);
+    border-radius:5px;
+    padding:16px 20px;
+    background:#f8f7f4;
+    font-size:.86rem;
+    color:var(--ink-soft);
+  }
+
+  a{color:var(--accent);}
+
+  @media (max-width:600px){
+    body{font-size:16px;}
+    h1{font-size:1.7rem;}
+    h2.sec{font-size:1.24rem;}
+    .masthead .wrap{padding:40px 20px 32px;}
+  }
+
+  /* ---- 挿絵プレースホルダ ---- */
+  figure.illust{margin:26px 0;padding:0;}
+  figure.illust img{display:block;width:100%;height:auto;border-radius:8px;}
+  figure.hero-illust{margin:28px 0 0;}
+  figure.hero-illust img{max-height:360px;object-fit:cover;}
+  /* 画像未配置時（is-empty）のプレースホルダ枠 */
+  figure.illust .illust-ph{display:none;}
+  figure.illust.is-empty{margin:26px 0;}
+  figure.illust.is-empty .illust-ph{
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;gap:8px;
+    min-height:150px;padding:24px 22px;
+    background:repeating-linear-gradient(135deg,#f4f3f0,#f4f3f0 12px,#eeece8 12px,#eeece8 24px);
+    border:1.5px dashed var(--line-strong);border-radius:8px;
+    color:var(--ink-soft);font-size:.92rem;line-height:1.7;
+  }
+  figure.hero-illust.is-empty .illust-ph{min-height:200px;}
+  .illust-ph-file{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.8rem;color:var(--accent);font-weight:700;
+    background:var(--panel);border:1px solid var(--line);border-radius:4px;
+    padding:3px 10px;
+  }
+
+  /* ---- スクロール・フェードイン ---- */
+
+  /* ================= アニメーション ================= */
+  /* フェードイン対象：タイトル・見出し・画像・テーブル・コールアウト等 */
+  .fx-fade{opacity:0;transform:translateY(16px);transition:opacity .9s ease-out,transform .9s ease-out;}
+  .fx-fade.fx-in{opacity:1;transform:translateY(0);}
+
+  /* タイピング対象：本文段落・箇条書き。再生前は不可視、開始時にinで表示 */
+  .fx-type{opacity:0;}
+  .fx-type.fx-in{opacity:1;}
+  /* タイピング中のキャレット（点滅） */
+  .fx-caret{
+    display:inline-block;width:.06em;
+    border-right:2px solid var(--accent);
+    margin-left:1px;animation:fxblink .9s step-end infinite;
+    vertical-align:baseline;
+  }
+  @keyframes fxblink{50%{border-color:transparent;}}
+
+  /* モーション抑制設定では即時表示 */
+  @media (prefers-reduced-motion:reduce){
+    .fx-fade{opacity:1;transform:none;transition:none;}
+    .fx-type{opacity:1;}
+    .fx-caret{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="eyebrow">消費税免税制度 改正ガイド</span>
+    <h1 class="fx-fade">2026年11月・免税「リファンド方式」への移行<br>― 制度の全体像と業界動向</h1>
+    <p class="lede fx-fade">2026年11月1日。この日を境に、日本の外国人旅行者向け消費税免税制度は、これまでの「購入時免税」から「リファンド方式（事後還付方式）」へと、大きく姿を変えます。「名前は聞いたことがあるけれど、実際のところ何がどう変わるのか、正直まだ整理できていない」――もしそう感じておられるなら、この記事はきっとお役に立てるはずです。</p>
+    <p class="lede fx-fade">ここでは、制度の根っこにある変更点から始めて、免税に関わる業界全体がどう揺れ動くのか、主要な事業者たちが水面下で何を仕掛けているのか、そしてこの市場に潜む見落としがちな落とし穴まで、順を追って、なるべくかみ砕いてお話ししていきます。焦らず、一緒に地図を広げていきましょう。</p>
+    <p class="meta-note fx-fade">この記事が想定している読者：免税手続きに関わる事業者の方、免税店の実務を担う方、そして「制度改正の全体像をきちんとつかんでおきたい」と考えているすべての方へ。新制度が始まるその日まで、判断のよりどころとして手元に置いていただければ幸いです。</p>
+
+    <figure class="illust hero-illust fx-fade">
+      <img src="images/hero.jpg" alt="日本の空港ターミナル 出発ロビー 免税ショッピングバッグを持つ外国人旅行者 明るく近代的"
+           onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
+      <span class="illust-ph"><span class="illust-ph-file">images/hero.jpg</span>日本の空港ターミナル 出発ロビー 免税ショッピングバッグを持つ外国人旅行者 明るく近代的</span>
+    </figure>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <nav class="toc" aria-label="目次">
+    <h2>目次</h2>
+    <ol>
+      <li><a href="#s1">そもそも“リファンド方式”とは何なのか？ ― 何が根本から変わるのか</a></li>
+      <li><a href="#s2">あなたのお店では、具体的に何が変わるのか</a></li>
+      <li><a href="#s3">“手続委託型がなくなる”― これ、本当に仕事が消えるという意味でしょうか？</a></li>
+      <li><a href="#s4">なぜ、免税に関わるすべての事業者が対応を迫られるのか？</a></li>
+      <li><a href="#s5">ライバル各社は、いま何を仕掛けているのか</a></li>
+      <li><a href="#s6">あの一覧に並ぶ、8つの顔ぶれ</a></li>
+      <li><a href="#s7">この市場に潜む“落とし穴”に、あなたは気づいていますか？</a></li>
+      <li><a href="#s8">結局、11月までに何を指標にすればいいのか</a></li>
+    </ol>
+  </nav>
+
+  <!-- ============ 1 ============ -->
+  <section id="s1">
+    <h2 class="sec fx-fade"><span class="sec-num">SECTION 1</span>そもそも“リファンド方式”とは何なのか？ ― 何が根本から変わるのか</h2>
+    <figure class="illust fx-fade">
+      <img src="images/illust-01.jpg" alt="税関カウンター パスポートとレシートを確認する様子 チェックマーク 還付のイメージ フラットイラスト"
+           onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
+      <span class="illust-ph"><span class="illust-ph-file">images/illust-01.jpg</span>税関カウンター パスポートとレシートを確認する様子 チェックマーク 還付のイメージ フラットイラスト</span>
+    </figure>
+
+    <p class="fx-type">まず、いちばん大事なところからお話しさせてください。今回の改正を「手続きがちょっと変わるだけでしょう」と捉えてしまうと、本質を見誤ります。これは、<strong>免税が“成立するタイミング”そのものを、後ろへずらしてしまう改正</strong>なのです。ここさえ腹に落ちれば、あとの話はすんなり入ってきますので、じっくり読んでみてください。</p>
+
+    <p class="fx-type">いまの制度（2026年10月まで）では、免税店は外国人旅行者に対して、税抜価格――つまり免税された価格で商品を売っています。お店で会計を済ませたその瞬間に、免税が完了しているわけですね。ところが2026年11月1日からは、この流れが次のように変わります。少し丁寧に、順を追ってみましょう。</p>
+
+    <ol class="flow fx-fade">
+      <li>お店では、旅行者に<strong>税込価格（課税価格）</strong>で商品を販売します。つまり、旅行者はこの時点でいったん消費税を支払うことになります。</li>
+      <li>旅行者は、購入した日から<strong>90日以内</strong>に日本を出国します。</li>
+      <li>出国のとき、空港などの税関で「この商品を、確かに国外へ持ち出しますね」という確認を受けます。</li>
+      <li>その持ち出しが確認された、という情報（税関確認情報）が、お店側へ届きます。</li>
+      <li>それを受けて、お店が旅行者へ<strong>消費税相当額を返金（リファンド）</strong>します。</li>
+    </ol>
+
+    <p class="fx-type">お気づきでしょうか。従来との決定的な違いは、免税が成立するのが<strong>「出国時に、持ち出しが確認されたあと」</strong>になる、という点です。「売った瞬間に免税」ではなく、「持ち出しが確認されて、はじめて免税が成立する」。この順序の逆転こそが、新制度のいちばんの背骨だと思ってください。</p>
+
+    <h3 class="">なぜ、わざわざこんな面倒な仕組みに変えるのか？</h3>
+
+    <p class="fx-type">「せっかく回っていた仕組みを、どうしてわざわざ複雑にするの？」――そう思われるのは、とても自然なことです。ここは建前だけでなく、少し踏み込んだ本音の部分までお話ししておきましょう。そのほうが、制度全体の“気持ち”がよく分かるからです。</p>
+
+    <p class="fx-type">公式の言葉を借りれば、今回の狙いは「不正利用を排除し、かつ<strong>免税店が不正の排除のために負担を負うことのない制度にする</strong>こと」にあります。……ただ、これだけだと少し上品すぎて、実態が見えてきませんよね。ざっくばらんに言ってしまえば、こういうことです。</p>
+
+    <p class="fx-type">これまでの「購入時点で免税が完了する」仕組みには、大きな穴がありました。お店で免税価格で買った商品が、<strong>実際に国外へ持ち出されたのかどうかを、誰も確かめられなかった</strong>のです。この穴を突いて、悪質な転売組織などが暗躍しました。免税で安く仕入れた商品を国内でそのまま売りさばく――そうやって、本来なら国に納められるべき消費税が、まんまと回収されずに消えていく。この不正が積み重なり、看過できないほど大きな問題へと膨れ上がっていったわけです。</p>
+
+    <p class="fx-type">つまり、平たく言えば、<strong>悪質な転売による“税の取りこぼし”があまりに深刻になったため、国がついに重い腰を上げ、抜本的な対策として新制度に踏み切った</strong>――これが、今回の改正の本当の背景です。「持ち出しが確認できて、はじめて免税する」という新しい順序は、まさにこの穴をふさぐための設計なのだと考えると、すべてが腑に落ちてくるはずです。</p>
+
+    <div class="callout reader fx-fade">
+      <span class="tag">見落とされがちな“もう一つの効果”</span>
+      <p class="fx-type">ここで、ぜひ添えておきたい大切な視点があります。この改正は、決して「不正を取り締まるための、後ろ向きな仕組み」だけでは終わっていません。</p>
+      <p class="fx-type">新制度では、手続きを電子システムで進めることが前提になります。その結果として、<strong>旅行者から見た免税手続きそのものが、ぐっと簡略化される</strong>のです。ごちゃごちゃした書類のやり取りや、消耗品を特殊な袋で包む手間などが減り、買い物のハードルが下がる。つまり、不正を封じるという“本丸”の目的の裏側で、<strong>旅行者にとっての使いやすさ（ユーザビリティ）の向上</strong>という、うれしいおまけまで付いてきた、というわけです。国にとっては税収を守り、旅行者にとっては買い物がしやすくなる。この両面を持っている、と捉えておくと、制度の見え方がずいぶん立体的になります。</p>
+    </div>
+  </section>
+
+  <!-- ============ 2 ============ -->
+  <section id="s2">
+    <h2 class="sec fx-fade"><span class="sec-num">SECTION 2</span>あなたのお店では、具体的に何が変わるのか</h2>
+    <figure class="illust fx-fade">
+      <img src="images/illust-02.jpg" alt="小売店のレジ 会計 レシート 税込表示 ビフォーアフター 対比 シンプルイラスト"
+           onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
+      <span class="illust-ph"><span class="illust-ph-file">images/illust-02.jpg</span>小売店のレジ 会計 レシート 税込表示 ビフォーアフター 対比 シンプルイラスト</span>
+    </figure>
+
+    <p class="fx-type">制度の背骨をつかんでいただいたところで、いよいよ「では、現場では実際に何がどう変わるのか」を見ていきましょう。ここは影響が大きいところなので、領域ごとに、ひとつずつ、ていねいにお話しします。</p>
+
+    <h3 class="">お金の受け渡しと、帳簿のつけ方</h3>
+    <p class="fx-type">まず、販売価格が税抜から<strong>税込</strong>へと変わります。旅行者は、いったん消費税を含んだ金額を支払う、というのは先ほどお話ししたとおりです。</p>
+    <p class="fx-type">そして、ここが少し会計の話になりますが、大切なところです。販売した時点では、いったん<strong>課税売上として処理</strong>しておき、あとから税関確認情報を受け取って保存した時点で、それを<strong>免税売上へと振り替える</strong>――こういう二段階の処理が必要になります。「売ったら終わり」ではなく、「確認が取れてから、帳簿を書き換える」という一手間が増える、とイメージしてください。ただし、免税の対象になるかどうかの判定ライン（5,000円以上）については、これまでどおり「税抜価額」で見ますので、そこは変わりません。</p>
+
+    <h3 class="">じつは“ラクになる”変更もある</h3>
+    <p class="fx-type">ここまで「手間が増える」話が続いたので、少しほっとする話もしておきましょう。今回の改正、負担が増えるばかりではありません。むしろ現場が<strong>ラクになる変更</strong>も、しっかり用意されています。</p>
+    <ul>
+      <li class="fx-type">これまで頭を悩ませていた、一般物品と消耗品の<strong>区分が、まるごと廃止</strong>されます。「これは消耗品だから…」と分けて考える必要がなくなるわけです。それに伴って、購入下限額（5,000円）の判定も、区分せずに行えるようになります。</li>
+      <li class="fx-type">消耗品にあった<strong>購入上限額（50万円）も、撤廃</strong>されます。</li>
+      <li class="fx-type">消耗品を専用の袋で包む、あの<strong>特殊包装も、不要</strong>になります。</li>
+    </ul>
+    <p class="fx-type">これらは、日々レジに立つスタッフの方々にとっては、地味ながら本当にありがたい簡素化のはずです。</p>
+
+    <h3 class="">そして、まったく新しい仕事――“返金”がやってくる</h3>
+    <p class="fx-type">さて、ここが新制度の目玉であり、いちばん構えておくべきところです。これまで存在しなかった<strong>「旅行者へお金を返す」という業務</strong>が、まるごと新しく生まれます。自社のシステムで購入記録情報を送っている事業者であれば、旅行者へ直接返金するか、あるいは返金の手続きを誰かに委託するか――どちらかを選んで、その体制を整えておく必要があります。この「返金」というテーマは、この記事の後半でくり返し登場しますので、頭の片隅に置いておいてください。</p>
+
+    <h3 class="">お店の“区分”と“許可”も見直される</h3>
+    <ul>
+      <li class="fx-type">これまで3つあった店舗区分（一般型・手続委託型・自動販売機型）のうち、手続委託型が一般型へ吸収され、<strong>「一般型」と「自動販売機型」の2区分</strong>へと整理されます。（この“手続委託型がなくなる”という話は、とても誤解されやすいので、次のセクションでじっくり解きほぐします。）</li>
+      <li class="fx-type">許可を受けるための条件も見直されます。場所や人員についての今までの要件が外れる一方で、<strong>「免税手続きを電子化できる体制が整っていること」</strong>が、新しい条件として加わります。</li>
+      <li class="fx-type">そして、これは厳しい話ですが――電子化に対応できていないお店、具体的には2026年10月31日までに「購入記録情報の提供方法等の届出書」を出していないお店は、その10月31日をもって<strong>免税店としての許可を失います</strong>。電子化への対応が、事実上の“足切りライン”になっている、ということです。ここはうっかりでは済まされないポイントですので、くれぐれもご注意ください。</li>
+    </ul>
+
+    <h3 class="">国へ送るデータに、新しい項目が加わる</h3>
+    <p class="fx-type">税抜100万円以上の高額な免税対象物品については、購入記録情報を送る際に、<strong>その品物を特定するための情報（シリアルナンバーなど）</strong>を、あわせて送る必要が出てきます。高額品ほど、より厳密に管理しよう、という趣旨ですね。</p>
+
+    <h3 class="">“別送”と“直送”――似ているけれど、まるで別物</h3>
+    <p class="fx-type">言葉がよく似ているので混同されがちですが、この2つは扱いがまったく違います。ここは表で、すっきり整理しておきましょう。</p>
+    <div class="table-scroll fx-fade">
+      <table>
+        <caption>「別送」と「直送」の違い</caption>
+        <thead>
+          <tr><th>区分</th><th>どういう方法か</th><th>新制度での扱い</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>別送</strong><br>（できません）</td>
+            <td>旅行者が購入品を自分で持たず、国際郵便などで国外へ送る方法</td>
+            <td>すでに2025年3月31日をもって廃止済み</td>
+          </tr>
+          <tr>
+            <td><strong>直送</strong><br>（できます）</td>
+            <td>免税店で運送契約を結び、お店から国外へ直接配送する方法</td>
+            <td>引き続き利用可能。こちらはリファンド方式ではなく、消費税法第7条の「輸出免税」として扱われるため、出国時の税関確認は不要</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout fx-fade">
+      <span class="tag">ここだけは、絶対に押さえてください</span>
+      <p class="fx-type">新制度への移行には、<strong>“お試し期間”や“併用期間”が一切ありません</strong>。2026年10月31日の営業が終わったその瞬間、翌11月1日からは、もう新制度一本に切り替わります。「しばらくは古いやり方も使える」という猶予は、ないのです。ですから、11月以降も免税販売を続けたいのであれば、その日までにリファンド方式への対応を、必ず終わらせておかなければなりません。もし準備が間に合わなければ、11月からは<strong>そもそも免税販売ができなくなってしまう</strong>――これは、どうか本気で受け止めておいてください。</p>
+    </div>
+  </section>
+
+  <!-- ============ 3 ============ -->
+  <section id="s3">
+    <h2 class="sec fx-fade"><span class="sec-num">SECTION 3</span>“手続委託型がなくなる”― これ、本当に仕事が消えるという意味でしょうか？</h2>
+    <figure class="illust fx-fade">
+      <img src="images/illust-03.jpg" alt="2つの歯車が噛み合う 委託・連携のイメージ ビジネス握手 抽象的 緑基調"
+           onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
+      <span class="illust-ph"><span class="illust-ph-file">images/illust-03.jpg</span>2つの歯車が噛み合う 委託・連携のイメージ ビジネス握手 抽象的 緑基調</span>
+    </figure>
+
+    <p class="fx-type">「手続委託型が廃止される」と聞いて、委託を受けて手続きを代行してきた事業者の方は、ドキッとされたかもしれません。「うちの仕事、なくなってしまうの？」と。でも、どうか落ち着いてください。ここは本当に誤解が多いところなので、ゆっくり、ていねいに解きほぐしていきます。</p>
+
+    <p class="fx-type">結論から申し上げます。<strong>「手続委託型という“お店の区分”はなくなる。けれども、委託を受けて手続きを代行するという“事業そのもの”は、なくならない」</strong>――これが正確な理解です。この2つは、まったく別の話なのです。</p>
+
+    <div class="keypoints fx-fade">
+      <span class="tag">いちばん大事なところ</span>
+      <p class="fx-type">消えてなくなるのは、あくまで<strong>免税店の「店舗カテゴリー」</strong>としての手続委託型です。委託して手続きを代わりにやってもらう、という仕組みそのものは、制度としてしっかり生き残ります。「区分の統廃合」と「業務の廃止」を、どうか切り分けて考えてください。</p>
+    </div>
+
+    <p class="fx-type">新制度でも、一般型の免税店は、承認免税手続事業者に免税販売手続きの事務を委託して行わせることができます。それどころか、この委託を行う免税手続カウンターの設置場所について、これまでのように「特定商業施設」の中でなければならない、という縛りがなくなります。つまり場所の制約がゆるみ、<strong>委託という事業は、むしろやりやすくなる方向</strong>へ動いているのです。</p>
+
+    <p class="fx-type">移行についても心配は要りません。委託の関係に変更がなければ、特別な手続きなしに、いま委託している承認免税手続事業者へ、そのまま免税販売手続きを委託できるとされています。既存の関係は、基本的にそのまま引き継がれる建て付けになっているのです。</p>
+
+    <h3 class="">委託を受ける事業者が担う“2つの顔”</h3>
+    <p class="fx-type">では、新制度のもとで、委託を受ける事業者は具体的にどんな役割を担うのでしょうか。大きく2つの顔に整理できます。</p>
+
+    <div class="table-scroll fx-fade">
+      <table>
+        <thead>
+          <tr><th>役割（顔）</th><th>どんな仕事か</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>承認免税手続事業者</strong><br>（免税販売手続きの受託）</td>
+            <td>お店から委託を受けて、免税販売手続きそのものを代行する顔。従来の「手続委託」に、いちばん近い役割です。「閑散期は自分たちで、繁忙期は委託先に」といった柔軟な使い分けも認められています。</td>
+          </tr>
+          <tr>
+            <td><strong>承認送受信事業者</strong><br>（データ送信＋返金手続きの受託）</td>
+            <td>免税店が集めた購入記録情報を、国税庁へ電子的に送る顔。そして新制度では、これに<strong>「返金手続きの受託」</strong>という、まったく新しい仕事が加わって、ぐっと存在感を増します。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="fx-type">とりわけ②に注目してください。返金の手続きは、免税店が自分でやってもいいのですが、<strong>承認送受信事業者などに委託する</strong>という道も用意されています。つまり――区分が統合されて仕事が消えるどころか、話はまったく逆なのです。委託されるサービスの中身が、「手続きの代行」だけだったものから、<strong>「データの送受信と、返金の処理まで、まとめて面倒を見る一気通貫のサービス」</strong>へと広がっていく。専門事業者の出番は、減るどころか、むしろ増えていく――そう考えるのが、実態に近い読み方です。</p>
+  </section>
+
+  <!-- ============ 4 ============ -->
+  <section id="s4">
+    <h2 class="sec fx-fade"><span class="sec-num">SECTION 4</span>なぜ、免税に関わるすべての事業者が対応を迫られるのか？</h2>
+    <figure class="illust fx-fade">
+      <img src="images/illust-04.jpg" alt="つながるネットワーク図 店舗・データ・決済・税関のノード 双方向の矢印 バリューチェーン"
+           onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
+      <span class="illust-ph"><span class="illust-ph-file">images/illust-04.jpg</span>つながるネットワーク図 店舗・データ・決済・税関のノード 双方向の矢印 バリューチェーン</span>
+    </figure>
+
+    <p class="fx-type">ここまで読んでこられて、「これは免税店だけの話ではなさそうだ」と感じ始めておられるかもしれません。そのとおりです。今回の改正は、免税に関わるあらゆる立場のプレイヤーが、いっせいに対応を迫られる――そんな“業界横断”の大きな地殻変動なのです。なぜそう言えるのか、順を追ってお話しします。</p>
+
+    <h3 class="">国へ送るデータの“かたち”が変わる</h3>
+    <p class="fx-type">まず、購入記録情報を送るときのデータ項目そのものが変わります。先ほど触れたシリアルナンバーなどが、その一例ですね。</p>
+    <p class="fx-type">でも、もっと構造的に大きいのは、<strong>データの流れが“一方通行”から“双方向”になる</strong>という点です。これまでは「購入記録情報を国税庁へ送る」だけの、いわば一方通行でした。ところが新制度では、これに加えて、税関から「持ち出しを確認しましたよ」という情報を<strong>受け取る</strong>仕組みが必要になります。この受け取りは「Pull型API連携」という方式で設計が進められていて、免税店や事業者の側からのリクエストに応じて、税関確認情報が渡される想定です。つまり、事業者のシステムは、送るだけでなく<strong>“受け取って照合する”機能まで備えた形へ、作り替える</strong>必要が出てくるわけです。</p>
+
+    <h3 class="">従来型のお店では、レジ（POS）にもメスが入る</h3>
+    <p class="fx-type">そして、意外と見落とされがちなのがレジ、つまりPOSです。ここにも改修の波が、はっきりと押し寄せます。どういうことか、具体的に挙げてみましょう。</p>
+    <ul>
+      <li class="fx-type">税抜での販売から税込での販売へ切り替わるので、<strong>価格の計算やレシートの表示のしくみ</strong>を変えなければなりません。</li>
+      <li class="fx-type">一般物品と消耗品の区分廃止、下限額判定の一本化、上限額の撤廃、包装の廃止――こうした変更に合わせて、<strong>免税かどうかを判定するしくみ</strong>を作り替える必要があります。</li>
+      <li class="fx-type">新しく加わる送信データ項目にも、レジ側が対応しなければなりません。</li>
+    </ul>
+    <p class="fx-type">だからこそ、免税対応のPOSや免税システムを手がけるベンダー各社は、こぞって「新制度対応バージョン」を用意し、お店に切り替えを呼びかけているのです。しかも、くり返しになりますが、猶予期間はなく10月31日で即・切替。お店は本番を迎える前に、システムの更新も、運用の確認も、すべて終えておかなければなりません。</p>
+
+    <h3 class="">つまり、こういう顔ぶれ全員が“当事者”になる</h3>
+    <p class="fx-type">ここまでの話を、いちど全体像として並べてみましょう。この改正で対応を迫られるのは、次のような面々です。</p>
+    <div class="table-scroll fx-fade">
+      <table>
+        <thead>
+          <tr><th>立場</th><th>迫られる対応</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>免税店</td><td>POS・免税システムの改修、そして返金業務を新設するか、委託するか</td></tr>
+          <tr><td>承認送信／送受信事業者</td><td>送受信の両対応、返金の受託、税関確認情報との照合のしくみづくり</td></tr>
+          <tr><td>POS・免税システムベンダー</td><td>新制度に対応した製品の提供</td></tr>
+          <tr><td>決済・送金事業者</td><td>返金という新しいお金の流れへの関与</td></tr>
+          <tr><td>税関・国税庁</td><td>受け入れる側のシステム整備</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fx-type">この中でも、<strong>「承認送受信事業者」であり、かつ「返金の実行者」でもある</strong>という立場は、今回の変更の影響をもっとも色濃く受ける場所に位置しています。担う責任は重い。けれども裏を返せば、それだけ<strong>市場での存在感を大きく高められる好機</strong>でもある――そんな二面性を帯びた、ひときわ重要なポジションなのです。</p>
+  </section>
+
+  <!-- ============ 5 ============ -->
+  <section id="s5">
+    <h2 class="sec fx-fade"><span class="sec-num">SECTION 5</span>ライバル各社は、いま何を仕掛けているのか</h2>
+    <figure class="illust fx-fade">
+      <img src="images/illust-05.jpg" alt="複数の企業がチェス盤を囲む 戦略 競争 俯瞰視点 ビジネス抽象イラスト"
+           onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
+      <span class="illust-ph"><span class="illust-ph-file">images/illust-05.jpg</span>複数の企業がチェス盤を囲む 戦略 競争 俯瞰視点 ビジネス抽象イラスト</span>
+    </figure>
+
+    <p class="fx-type">制度の中身が見えてくると、次に気になるのは「では、実際のプレイヤーたちは、この新制度に向けてどう動いているのか」というところではないでしょうか。ここでは、公開されている情報の範囲で、主だった事業者の“返金の設計思想”と、直近の動きを覗いてみましょう。各社それぞれに、はっきりとした個性があって、なかなか面白いものです。</p>
+
+    <h3 class="">Global Blue（グローバルブルーTFSジャパン）</h3>
+    <p class="fx-type">世界的な最大手であるGlobal Blueと、NTTデータが手を組んで2013年に生まれた会社です。この会社の設計で目を引くのが<strong>「代理登録方式」</strong>という考え方。旅行者がやるべき登録の手間を、お店の側が代わりに引き受けてしまう。そうすることで、旅行者の「面倒だな」という気持ちを取り除き、買い物のハードルを下げて、結果的に購買率を上げよう、という発想です。</p>
+    <p class="fx-type">もう一つの大きな売りが、<strong>「問い合わせ窓口を、まるごと引き受けます」</strong>という姿勢です。もし返金でトラブルが起きても、旅行者からの問い合わせ先は同社になる。だからお店は、その対応に追われずに済む。この「お店の不安と負担を肩代わりする」という点を、前面に押し出しています。さらに、11月を待たずに新方式を先行導入して、繁忙期の前に現場を慣らしておける、という“早めの契約のおすすめ”も、最近とくに力を入れている動きです。</p>
+
+    <h3 class="">J&amp;J Tax Free（JTB × JCB グループ）＋ GMOペイメントゲートウェイ</h3>
+    <p class="fx-type">JTBとJCBが手を組んだJ&amp;J事業創造のグループ会社で、じつは直近でいちばん大胆な一手を打ってきたのが、この陣営です。2025年12月22日、<strong>決済大手のGMOペイメントゲートウェイ（GMO-PG）との戦略的提携</strong>を、正式に発表しました。役割分担は、こんなふうにきれいに分かれています。</p>
+    <ul>
+      <li class="fx-type"><strong>J&amp;J Tax Free側</strong>：免税システムやサービスの提供、免税店と旅行者向けのサポートデスクの運営、そして免税購買体験そのものの価値を高める役回り。</li>
+      <li class="fx-type"><strong>GMO-PG側</strong>：返金機能の提供と、その裏側の処理をまとめて管理する役回り。旅行者向けの専用サイトの開発も担います。</li>
+    </ul>
+    <p class="fx-type">この提携、なぜ侮れないのか。カギは、GMO-PGが持っている“地力”にあります。同社は年間の決済処理金額が21兆円を超える決済のプロであり、しかも<strong>資金移動業者としてすでに登録済み</strong>で、国内で送金サービスを現に運営してきた実績を持っています。ここが効いてくるのです。思い出してください。「返金には、消費税法以外の法律(資金決済のルールなど)への対応が必要になる場合がある」というお話をしましたよね。返金とは、要するにお金を送る行為ですから、当然そうした規制がかかってきます。ところがGMO-PGは、その厄介な法令面のハードルを、既存のライセンスでひらりと越えられる。つまりJ&amp;J＋GMO連合は、<strong>提携という一手で、返金事業のいちばん硬い関門を突破してきた</strong>わけです。加えて、旅行者向けに24時間365日の多言語サポートまで始めるとしています。</p>
+
+    <h3 class="">スマレジ</h3>
+    <p class="fx-type">こちらはクラウドPOSの側から攻めてくる存在です。自社のマルチ決済サービスを活用して、<strong>決済に使われたカードへ、自動的に返金する</strong>という設計。なんと、旅行者による返金の申請そのものを不要にしてしまう、という思い切った作りです。カードなら自動返金、それ以外は専用Webサイトで登録、という二本立て。POSも、決済も、データ送信も、返金も、ぜんぶ自社で垂直に統合してしまっているのが、この会社の強みです。</p>
+
+    <h3 class="">SmartDetax / JPrefund（スマートテクノロジーズ＆リソーシーズ）</h3>
+    <p class="fx-type">還付のためのプラットフォーム「JPrefund」を軸に、<strong>APIを外部へ開放する</strong>――そんなプラットフォーム型のアプローチが特徴です。税関の確認が取れたあと、カード・スマホ決済・銀行送金・空港での現金など、旅行者が選んだ手段へ自動で送金する設計で、AIによるスキャンで手入力をゼロにする、とも打ち出しています。「自分たちで全部抱え込む」のではなく、「連携の土台として、みんなに使ってもらう」という思想ですね。</p>
+
+    <h3 class="">POSベンダー勢(ビジコム など)</h3>
+    <p class="fx-type">免税専業ではない、POSベンダーの動きも見逃せません。たとえば、リファンド方式に対応した免税システムをいち早く提供し、制度が始まる前に操作を練習できるトレーニングモードまで用意して、既存ユーザーの移行を後押ししています。この層は「今あるPOSを、なるべく安く新制度対応に」という手軽さを武器に、中小のお店をしっかり取りにきます。</p>
+
+    <h3 class="">ひと歩さがって眺めると――戦略は3つの流れに分かれる</h3>
+    <p class="fx-type">各社の動きを、少し高いところから見下ろしてみると、戦略が大きく3つの流れに分かれていることが見えてきます。整理してみましょう。</p>
+    <div class="table-scroll fx-fade">
+      <table>
+        <thead>
+          <tr><th>流れ</th><th>基本の考え方</th><th>代表的なプレイヤー</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>開放型</strong></td><td>返金の部分だけを切り出して、他社システムを使っているお店まで取りにいく</td><td>Global Blue、J&amp;J Tax Free</td></tr>
+          <tr><td><strong>垂直統合・囲い込み型</strong></td><td>POSも決済も自社で持ち、既存ユーザーをまるごと新制度へ移す</td><td>スマレジ、POSベンダー勢</td></tr>
+          <tr><td><strong>プラットフォーム型</strong></td><td>APIを開放し、連携の土台として広げていく</td><td>SmartDetax / JPrefund</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 6 ============ -->
+  <section id="s6">
+    <h2 class="sec fx-fade"><span class="sec-num">SECTION 6</span>あの一覧に並ぶ、8つの顔ぶれ</h2>
+    <figure class="illust fx-fade">
+      <img src="images/illust-06.jpg" alt="事業者リストの一覧表 ランキング 上位グループがハイライトされた表 クリーンなUI"
+           onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
+      <span class="illust-ph"><span class="illust-ph-file">images/illust-06.jpg</span>事業者リストの一覧表 ランキング 上位グループがハイライトされた表 クリーンなUI</span>
+    </figure>
+
+    <p class="fx-type">「では、返金に対応する事業者って、結局どこがあるの？」――その答えを知る、いちばん確かな入口があります。それが、<strong>全国免税店協会の「リファンド方式」特設サイト</strong>に掲載されている「返金に対応予定の承認送信事業者一覧」というPDFです。定期的に更新されていて、業界の“いまの顔ぶれ”をつかむための起点になります。</p>
+    <p class="fx-type">ただし、一点だけ心に留めておいてください。協会自身がはっきり述べているとおり、この一覧は<strong>各事業者からの“申告”にもとづく参考情報</strong>にすぎません。協会や国が「この事業者は大丈夫ですよ」とお墨付きを与えたり、保証したりするものではないのです。あくまで、お店が自分の目で選ぶための材料――そういう位置づけのものだと理解しておきましょう。（この“お墨付きがない”という点が、じつは後半でお話しする落とし穴に、深くつながってきます。）</p>
+
+    <h3 class="">顔ぶれを、実際に並べてみると(2025年10月時点)</h3>
+    <p class="fx-type">この一覧には、返金対応の型(対応A・B・C)と、購入記録情報を送るための対応端末が、事業者ごとに書き添えられています。掲載されている顔ぶれを、整理してみましょう(申告順)。</p>
+
+    <div class="table-scroll fx-fade">
+      <table>
+        <caption>返金に対応予定の承認送信事業者一覧(2025年10月時点／協会の公開資料をもとに整理)</caption>
+        <thead>
+          <tr><th>事業者</th><th class="center">返金対応</th><th>送信対応端末</th></tr>
+        </thead>
+        <tbody>
+          <tr class="tier1"><td>株式会社J&amp;J Tax Free</td><td class="center">A・B・C</td><td>スマホ／タブレット／POS／PC／その他 フル対応</td></tr>
+          <tr class="tier1"><td>株式会社Pie Systems Japan</td><td class="center">A・B・C</td><td>フル対応</td></tr>
+          <tr class="tier1"><td>スマートテクノロジーズ＆リソーシーズ株式会社</td><td class="center">A・B・C</td><td>フル対応</td></tr>
+          <tr class="tier1"><td>グローバルブルーティエフエスジャパン株式会社</td><td class="center">A・B・C</td><td>フル対応</td></tr>
+          <tr><td>株式会社ツアレゴジャパン</td><td class="center">一部</td><td>限定的</td></tr>
+          <tr><td>株式会社日本免税</td><td class="center">一部</td><td>広め</td></tr>
+          <tr><td>WAmazing株式会社</td><td class="center">一部</td><td>限定的</td></tr>
+          <tr><td>グローバルタックスフリー株式会社</td><td class="center">一部</td><td>広め</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="fx-type">この一覧を眺めていて、ひとつ、はっきりと見えてくることがあります。それは、<strong>返金対応A・B・Cのすべてに対応し、送信端末もフル対応という、最上位クラスの構成をとる4社</strong>の存在です。すなわち「J&amp;J Tax Free」「Pie Systems Japan」「スマートテクノロジーズ＆リソーシーズ」「Global Blue」――この4社が、いわば“何でも来い”の第一グループを形づくっているのです。Pie Systems Japan も、この第一グループの一角に、しっかりと名を連ねています。</p>
+
+    <p class="fx-type">そしてもう一つ。この一覧は、更新のたびに掲載事業者が増えています。返金という新しい市場へ、各社が続々と参入してきている――そんな熱を帯びたフェーズにある、ということも読み取れます。プレイヤーは、いまこの瞬間も増え続けているのです。</p>
+
+    <h3 class="">そもそも、返金対応「A・B・C」って何を指すの？</h3>
+    <p class="fx-type">表に何度も出てくる「A・B・C」。これが何なのか、気になりますよね。これは、ひとことで言えば<strong>「返金を、誰が、どうやって担うか」のパターン分け</strong>です。協会の説明資料によると、購入記録情報を“どこのシステムから送るか”(お店のシステムか、事業者のシステムか)と、返金を“誰が実行するか”(お店自身か、委託先か)――この組み合わせで整理されています。ざっくり言うと、こんな分かれ方です。</p>
+    <ul>
+      <li class="fx-type">お店が、自分で返金するパターン</li>
+      <li class="fx-type">承認送信事業者に、返金業務を委託するパターン</li>
+      <li class="fx-type">承認送信事業者とは別の決済事業者に、返金業務を委託するパターン</li>
+    </ul>
+    <p class="fx-type">ちなみに、承認送信事業者とは別の事業者へ返金を委託する場合は、お店が自分でその決済事業者と契約を結ぶ必要があり、承認送信事業者を経由しての契約はできない、とされています。この一点が、各社のサービス設計の分かれ道になっていたりもします。</p>
+    <p class="fx-type">ともあれ、A・B・Cのすべてに対応しているということは、<strong>「自分たちで返金したいお店」にも「まるごと任せてしまいたいお店」にも、どちらの事情にも応えられる懐の深さ</strong>を持っている、ということを意味します。ここは、事業者を見比べるときの、なかなか大事な観点になります。</p>
+  </section>
+
+  <!-- ============ 7 ============ -->
+  <section id="s7">
+    <h2 class="sec fx-fade"><span class="sec-num">SECTION 7</span>この市場に潜む“落とし穴”に、あなたは気づいていますか？</h2>
+    <figure class="illust fx-fade">
+      <img src="images/illust-07.jpg" alt="盾とセキュリティの錠前 信頼 データ保護 慎重に道を選ぶ人物 注意喚起 落ち着いた警告色"
+           onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
+      <span class="illust-ph"><span class="illust-ph-file">images/illust-07.jpg</span>盾とセキュリティの錠前 信頼 データ保護 慎重に道を選ぶ人物 注意喚起 落ち着いた警告色</span>
+    </figure>
+
+    <p class="fx-type">さて、ここが、この記事でいちばんお伝えしたかった話かもしれません。堅牢なシステムや、利用者に本当に喜ばれるプロダクトを大切に考えておられる方には、とりわけ深く関わってくるところです。業界のメディアが鋭く指摘している、この市場の“構造的な落とし穴”について、少しだけ真剣にお話しさせてください。</p>
+
+    <div class="callout risk fx-fade">
+      <span class="tag">見落としてはいけない、構造の話</span>
+      <p class="fx-type">国税庁のQ&amp;Aによると、返金業務の委託を受ける事業者は、必ずしも消費税法上の承認免税手続事業者や承認送受信事業者である必要は「ない」とされています。しかも、返金の代理業務だけを行うための、国税庁独自の資格制度も設けられていません。先ほど触れたとおり、協会の一覧も各事業者の申告ベースであって、国が返金について認可や保証をしているわけではない、と明記されています。</p>
+    </div>
+
+    <p class="fx-type">この事実が、何を意味するか。おわかりでしょうか。行き着く先は、こういう状況です。<strong>お店は、委託先のシステムが本当に安全なのか、資金の管理はしっかりしているのか、個人情報は守られるのか、きちんと返金する能力があるのか、障害が起きたときちゃんと対応してくれるのか――そうしたことを、すべて自分で調べ、自分の責任で選ばなければならない</strong>のです。</p>
+
+    <p class="fx-type">さらに言えば、返金という事業には、その中身によって、資金決済に関する法律の登録や、犯罪収益移転防止法にもとづく本人確認、外国為替に関する法律上の確認などが必要になる場合があります。ところが――免税制度を所管する国税当局が、これらを横断的にチェックしてくれるしくみは、存在しないのです。いくつもの法律がからみあう返金事業でありながら、いざ問題が起きたとき、どの役所が責任をもって対応してくれるのか、ふつうのお店には、とても分かりにくい。そんな構造になってしまっているわけです。</p>
+
+    <h3 class="">この“落とし穴”が、逆に教えてくれること</h3>
+    <p class="fx-type">では、この構造をどう受け止めればいいのでしょう。ここで、ものの見方をくるりと裏返してみましょう。市場全体が「国のお墨付きがないまま、お店が自己責任で委託先を選ぶ」という構造になっている――ということは、最終的にものを言うのは、たった一つ。<strong>「信頼」</strong>です。セキュリティ、資金の管理、障害時の対応、個人情報の保護。こうしたところで信頼を勝ち取れる事業者だけが、選ばれていく。そういう市場なのです。</p>
+
+    <div class="keypoints fx-fade">
+      <span class="tag">だからこそ、ここが効いてくる</span>
+      <p class="fx-type">裏を返せば、長い時間をかけて積み上げてきた、事故のない安定運用の実績は、決済大手の資金力や、グローバルな運用実績とは<strong>まったく別の軸で、とてつもなく強い説得材料</strong>になり得る、ということです。一方で――ここで信頼を裏切るような事故を一度でも起こしてしまえば、その最大の武器が、一瞬にして崩れ去るリスクでもあります。つまりこの市場において、「堅牢であること」は、単なる技術的な要件などではありません。それは<strong>“選ばれる理由”そのもの</strong>なのです。この一点は、どうか胸に刻んでおいてください。</p>
+    </div>
+  </section>
+
+  <!-- ============ 8 ============ -->
+  <section id="s8">
+    <h2 class="sec fx-fade"><span class="sec-num">SECTION 8</span>結局、11月までに何を指標にすればいいのか</h2>
+    <figure class="illust fx-fade">
+      <img src="images/illust-08.jpg" alt="羅針盤 地図 ゴールに向かう道 2026年11月のカレンダー 前向きなまとめ"
+           onerror="this.style.display='none';this.parentNode.classList.add('is-empty');">
+      <span class="illust-ph"><span class="illust-ph-file">images/illust-08.jpg</span>羅針盤 地図 ゴールに向かう道 2026年11月のカレンダー 前向きなまとめ</span>
+    </figure>
+
+    <p class="fx-type">ずいぶん長い道のりを、一緒に歩いてきました。最後に、ここまでの話を、大切なポイントだけ、もう一度そっと振り返っておきましょう。この先、11月が来るまで、迷ったときに立ち返る“指標”として使っていただければと思います。</p>
+
+    <ul>
+      <li class="fx-type"><strong>制度の背骨。</strong>2026年11月1日、免税は「購入時免税」から「リファンド方式」へ。免税が成立するのは<strong>「出国時に持ち出しが確認されたあと」</strong>。お店は税込で売り、確認が取れてから返金する。この順序の逆転が、すべての出発点でした。</li>
+      <li class="fx-type"><strong>変わる背景。</strong>その根っこには、悪質な転売による深刻な税の取りこぼしがあり、国がそれを封じるために踏み切った、という事情がありました。そして電子化によって、旅行者にとっての使いやすさまで向上した――そんな“もう一つの顔”も忘れずに。</li>
+      <li class="fx-type"><strong>負担と恩恵は、表裏一体。</strong>区分の廃止や上限撤廃、包装の不要化など<strong>ラクになる面</strong>がある一方で、<strong>「返金」という新しい仕事</strong>が生まれる。しかも移行に猶予はなく、10月31日で即・切替。</li>
+      <li class="fx-type"><strong>“委託”は終わらない。</strong>「手続委託型」という店舗区分はなくなっても、<strong>委託して代行する事業そのものは生き残り、むしろ役割は広がっていく</strong>。</li>
+      <li class="fx-type"><strong>これは業界全体の話。</strong>免税店も、事業者も、POSベンダーも、決済事業者も、みんなが当事者。国へのデータは双方向へ、レジは判定ロジックの作り替えへ。</li>
+      <li class="fx-type"><strong>プレイヤーの地図。</strong>各社の戦略は「開放型」「垂直統合型」「プラットフォーム型」の3つに大別できる。返金フル対応の第一グループには、<strong>J&amp;J Tax Free・Pie Systems Japan・スマートテクノロジーズ＆リソーシーズ・Global Blue</strong> の4社が並ぶ。</li>
+      <li class="fx-type"><strong>そして、最後にものを言うのは“信頼”。</strong>国のお墨付きがないなかで、お店は自己責任で委託先を選ぶ。だからこそ、堅牢さと安定した実績が、そのまま“選ばれる理由”になる。</li>
+    </ul>
+
+    <p class="fx-type">新制度が幕を開けるその日まで、ここで広げた地図が、制度を理解し、業界の動きを見渡すための、確かなよりどころになってくれるはずです。とはいえ、制度の細かな仕様や最新の情報は、これからもどんどん更新されていきます。実務の判断をされる際には、どうか国税庁の特設ページや、全国免税店協会の公開資料といった<strong>一次情報</strong>にも、あわせて目を通すようにしてください。この記事が、その学びの、確かな土台になれたのなら――これほどうれしいことはありません。</p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="disclaimer">
+      <p style="margin-top:0;"><strong>この記事について</strong></p>
+      <p class="fx-type">本稿は、公開情報(国税庁・観光庁・国土交通省の資料、全国免税店協会の公開資料、各社の公式サイトおよびプレスリリース、業界メディア等)をもとに、制度改正の全体像と業界動向を、なるべくかみ砕いて体系的に整理したものです。各社に関する記述は、対外的に公表されている打ち出しや直近の動きにもとづくものであり、内部の設計判断や契約実績を示すものではありません。</p>
+      <p class="fx-type">制度の具体的な仕様・手続き・会計処理については、施行に向けて情報が更新される可能性があります。実務の判断にあたっては、国税庁「輸出物品販売場制度のリファンド方式への見直し」をはじめとする一次情報をご確認ください。掲載事業者の一覧は2025年10月時点の公開資料にもとづく整理であり、最新の状況は協会の特設サイトで更新されます。</p>
+    </div>
+    <p style="margin-top:20px;">消費税免税制度「リファンド方式」改正ガイド ／ 施行日：2026年11月1日</p>
+  </div>
+</footer>
+
+
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  // すべての演出対象を「文書順」で取得
+  var nodes = Array.prototype.slice.call(
+    document.querySelectorAll('.fx-fade, .fx-type')
+  );
+
+  if(reduce || !('IntersectionObserver' in window)){
+    nodes.forEach(function(n){ n.classList.add('fx-in'); });
+    return;
+  }
+
+  // タイピング対象は、元テキストを退避して空にしておく
+  nodes.forEach(function(n){
+    if(n.classList.contains('fx-type')){
+      // 子要素(strong等)を含む場合もあるので、内容をHTMLとして退避
+      n.dataset.fxHtml = n.innerHTML;
+      n.innerHTML = '';
+    }
+  });
+
+  // 可視判定
+  var visible = {};
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var i = nodes.indexOf(e.target);
+      if(i < 0) return;
+      if(e.isIntersecting){ visible[i] = true; pump(); }
+    });
+  }, { threshold:0.15, rootMargin:'0px 0px -6% 0px' });
+  nodes.forEach(function(n){ io.observe(n); });
+
+  // 文書順に一つずつ処理するキュー
+  var cursor = 0;        // 次に処理すべき index
+  var busy   = false;    // タイピング実行中フラグ
+
+  function pump(){
+    if(busy) return;
+    if(cursor >= nodes.length) return;
+
+    var node = nodes[cursor];
+
+    // まだ画面に入っていなければ、ここで停止（スクロールを追い越さない）
+    if(!visible[cursor]) return;
+
+    if(node.classList.contains('fx-type')){
+      // タイピング：完了まで busy、その後 cursor を進める
+      busy = true;
+      typeIn(node, function(){
+        busy = false;
+        cursor++;
+        io.unobserve(node);
+        pump();
+      });
+    }else{
+      // フェード：即座に発火して次へ（待たない）
+      node.classList.add('fx-in');
+      io.unobserve(node);
+      cursor++;
+      pump();
+    }
+  }
+
+  // タイピング本体：HTMLタグを保持しつつ、テキストノードだけ1文字ずつ出す
+  function typeIn(el, done){
+    el.classList.add('fx-in');
+    var html = el.dataset.fxHtml || '';
+    // トークン列へ分解：タグはまとめて、テキストは1文字ずつ
+    var tokens = tokenize(html);
+    var caret = document.createElement('span');
+    caret.className = 'fx-caret';
+    el.appendChild(caret);
+
+    var i = 0;
+    function step(){
+      if(i >= tokens.length){
+        if(caret.parentNode) caret.parentNode.removeChild(caret);
+        done();
+        return;
+      }
+      var t = tokens[i++];
+      if(t.tag){
+        // タグはキャレットの前にそのまま挿入
+        caret.insertAdjacentHTML('beforebegin', t.value);
+        step(); // タグは待たずに続行
+      }else{
+        caret.insertAdjacentText('beforebegin', t.value);
+        // 「。」「！」「？」で一呼吸、句読点「、」で軽く、その他は通常
+        var ch = t.value;
+        var wait = 84;                 // 基本 84ms/字
+        if(ch==='。'||ch==='！'||ch==='？') wait = 680;
+        else if(ch==='、'||ch==='，') wait = 260;
+        else if(ch===' '||ch==='\n') wait = 20;
+        setTimeout(step, wait);
+      }
+    }
+    step();
+  }
+
+  // HTML文字列を「タグ」と「1文字テキスト」のトークン列に分解
+  function tokenize(html){
+    var out = [];
+    var re = /<[^>]+>/g;
+    var last = 0, m;
+    while((m = re.exec(html)) !== null){
+      if(m.index > last){
+        pushChars(out, html.slice(last, m.index));
+      }
+      out.push({ tag:true, value:m[0] });
+      last = re.lastIndex;
+    }
+    if(last < html.length) pushChars(out, html.slice(last));
+    return out;
+  }
+  function pushChars(out, text){
+    // HTMLエンティティ（&amp; 等）を1トークンとして扱う
+    var re = /&[a-zA-Z#0-9]+;|[\s\S]/g, m;
+    while((m = re.exec(text)) !== null){
+      out.push({ tag:false, value:m[0] });
+    }
+  }
+
+  // 初回ポンプ（既に画面内にある先頭要素を動かす）
+  // レイアウト確定後に一度走らせる
+  requestAnimationFrame(function(){ requestAnimationFrame(pump); });
+  window.addEventListener('scroll', pump, { passive:true });
+  window.addEventListener('resize', pump);
+})();
+</script>
+</body>
+</html>
