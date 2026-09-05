@@ -982,15 +982,47 @@
   // ── ユーティリティ ──
   function wait(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
 
+  // 通常要素：上端が画面に入れば開始
   function waitForVisible(el){
     return new Promise(function(resolve){
       var r = el.getBoundingClientRect();
-      // 既に画面内、または上へ通り過ぎている場合は待たない
       if(r.top < window.innerHeight * 0.88){ resolve(); return; }
       var io = new IntersectionObserver(function(e){
         if(e[0].isIntersecting){ io.disconnect(); resolve(); }
       }, { threshold:0.01, rootMargin:'0px 0px -6% 0px' });
       io.observe(el);
+    });
+  }
+
+  // 画像用：要素の「下端」まで画面に入ってから開始する
+  // （半分しか見えていない状態でふわっと始まるのを防ぐ）
+  function waitForFullyVisible(el){
+    return new Promise(function(resolve){
+      function ready(){
+        var r = el.getBoundingClientRect();
+        // 下端が画面内に収まっている、または画像が画面より高い場合は
+        // 十分な高さ（画面の8割）が見えていれば開始
+        var h = window.innerHeight;
+        return (r.bottom <= h * 0.98) || (r.height > h * 0.9 && r.top < h * 0.1);
+      }
+      if(ready()){ resolve(); return; }
+      var done = false;
+      function check(){
+        if(done) return;
+        if(ready()){
+          done = true;
+          window.removeEventListener('scroll', check);
+          window.removeEventListener('resize', check);
+          resolve();
+        }
+      }
+      window.addEventListener('scroll', check, {passive:true});
+      window.addEventListener('resize', check);
+      // 念のため定期チェック（スクロールが止まった状態への保険）
+      var iv = setInterval(function(){
+        if(done){ clearInterval(iv); return; }
+        check();
+      }, 200);
     });
   }
 
@@ -1071,13 +1103,19 @@
         continue;
       }
 
-      await waitForVisible(s.el);
-      var skip = false;
-      await wait(200);                     // 各パーツの開始を少し遅らせる
+      // 画像は全体が見えてから、それ以外は上端が見えたら開始
+      var isFigure = s.el.matches && s.el.matches('figure.illust, .hero');
+      if(isFigure){
+        await waitForFullyVisible(s.el);
+      }else{
+        await waitForVisible(s.el);
+      }
+      await wait(isFigure ? 260 : 200);    // 各パーツの開始を少し遅らせる
 
       if(s.kind==='fade'){
         s.el.classList.add('on');
-        await wait(760);
+        // 画像のあとは一呼吸置いてから次へ（タイピングが早く始まりすぎないように）
+        await wait(isFigure ? 1250 : 760);
 
       }else if(s.kind==='type'){
         await typeIn(s.el, stash.get(s.el)||'');
