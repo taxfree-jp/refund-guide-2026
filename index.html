@@ -980,17 +980,30 @@
   });
 
   // ── ユーティリティ ──
-  function wait(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+  // 中断可能な待機（ジャンプ要求が来たら即座に抜ける）
+  function wait(ms){
+    return new Promise(function(r){
+      var t = setTimeout(function(){ clearInterval(iv); r(); }, ms);
+      var iv = setInterval(function(){
+        if(abortCurrent){ clearTimeout(t); clearInterval(iv); r(); }
+      }, 60);
+    });
+  }
 
   // 通常要素：上端が画面に入れば開始
   function waitForVisible(el){
     return new Promise(function(resolve){
       var r = el.getBoundingClientRect();
-      if(r.top < window.innerHeight * 0.88){ resolve(); return; }
+      // 画面内に少しでも入っていれば開始（下端ぎりぎりで止まらないように）
+      if(r.top < window.innerHeight * 0.98){ resolve(); return; }
       var io = new IntersectionObserver(function(e){
-        if(e[0].isIntersecting){ io.disconnect(); resolve(); }
+        if(e[0].isIntersecting){ io.disconnect(); clearInterval(iv); resolve(); }
       }, { threshold:0.01, rootMargin:'0px 0px -6% 0px' });
       io.observe(el);
+      // ジャンプ要求が来たら待機を打ち切る
+      var iv = setInterval(function(){
+        if(abortCurrent){ io.disconnect(); clearInterval(iv); resolve(); }
+      }, 60);
     });
   }
 
@@ -1021,6 +1034,7 @@
       // 念のため定期チェック（スクロールが止まった状態への保険）
       var iv = setInterval(function(){
         if(done){ clearInterval(iv); return; }
+        if(abortCurrent){ done=true; clearInterval(iv); resolve(); return; }
         check();
       }, 200);
     });
@@ -1047,8 +1061,8 @@
       function finishNow(){ el.innerHTML = html; resolve(); }
       render();
       function step(){
-        // 読者が完全に読み飛ばしたら、打ち切って全文表示
-        if(el.getBoundingClientRect().bottom < -40){ finishNow(); return; }
+        // ジャンプ要求、または完全に読み飛ばされたら打ち切って全文表示
+        if(abortCurrent || el.getBoundingClientRect().bottom < -40){ finishNow(); return; }
         if(ti>=tokens.length){ el.innerHTML = out; resolve(); return; }
         var tk = tokens[ti];
         if(tk.charAt(0)==='<'){ out+=tk; render(); ti++; step(); return; }
@@ -1090,16 +1104,60 @@
     }
   }
 
+  // ── 目次ジャンプ：飛び先までを一気に完成させ、そこから演出を再開する ──
+  var jumpTo = null;   // ジャンプ先のセクション要素
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('nav.toc a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute('href').slice(1);
+    var target = document.getElementById(id);
+    if(!target) return;
+    jumpTo = target;
+    // 進行中の演出を即座に打ち切る（待機中でも割り込めるように）
+    abortCurrent = true;
+  });
+
+  // 進行中の演出を中断するフラグ
+  var abortCurrent = false;
+
+  // 目次ジャンプ：飛び先セクションの「最後の要素」までを、すべて即座に完成させる
+  // （飛んだ先がすぐ読める状態になる。演出より“すぐ読めること”を優先）
+  function catchUpTo(targetEl){
+    var lastIdx = -1;
+    for(var i=0;i<plan.length;i++){
+      if(plan[i].el === targetEl || targetEl.contains(plan[i].el)) lastIdx = i;
+    }
+    if(lastIdx < 0) return -1;
+    // 飛び先セクションを含めて、そこまでを全部完成させる
+    for(var j=0;j<=lastIdx;j++){
+      if(!plan[j]._done){ finishInstantly(plan[j]); plan[j]._done = true; }
+    }
+    return lastIdx;
+  }
+
   // ── メイン：直列再生 ──
   async function run(){
     await wait(900);                       // 開始をわずかに遅らせて余裕を出す
     for(var i=0;i<plan.length;i++){
+
+      // 目次からジャンプ要求があれば、その手前までを一気に完成させて飛ぶ
+      if(jumpTo){
+        var ji = catchUpTo(jumpTo);
+        jumpTo = null;
+        abortCurrent = false;              // 割り込み解除
+        if(ji >= 0){ i = ji; }
+        await wait(400);                   // 移動後、一呼吸置いてから開始
+      }
+
       var s = plan[i];
+      if(s._done) continue;
 
       // 読者がすでにこの位置を通り過ぎている場合は、
       // 演出を省略して即座に完成状態にし、次へ進む（順番待ちで置き去りにしない）
       if(s.el.getBoundingClientRect().top < window.innerHeight * 0.35){
         finishInstantly(s);
+        s._done = true;
         continue;
       }
 
@@ -1127,6 +1185,7 @@
           await wait(820);      // 枠が出きってから中身へ
         }
         for(var j=0;j<s.inner.length;j++){
+          if(abortCurrent) break;
           var x = s.inner[j];
           await waitForVisible(x);
           await typeIn(x, stash.get(x)||'');
@@ -1139,6 +1198,7 @@
         var rb = s.el.querySelector('.rule-b');
         if(rt){ rt.classList.add('on'); await wait(820); }   // 上線
         for(var k=0;k<s.inner.length;k++){
+          if(abortCurrent) break;
           var y = s.inner[k];
           await waitForVisible(y);
           await typeIn(y, stash.get(y)||'');
@@ -1147,6 +1207,7 @@
         await wait(120);
         if(rb){ rb.classList.add('on'); await wait(760); }   // 下線
       }
+      s._done = true;
     }
   }
 
