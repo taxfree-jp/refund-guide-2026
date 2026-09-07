@@ -1155,7 +1155,10 @@
 
       // 読者がすでにこの位置を通り過ぎている場合は、
       // 演出を省略して即座に完成状態にし、次へ進む（順番待ちで置き去りにしない）
-      if(s.el.getBoundingClientRect().top < window.innerHeight * 0.35){
+      // ただし「まだ一度もスクロールしていない＝冒頭を見ている」場合は対象外。
+      // （ページ最上部の要素は top がほぼ 0 になるため、誤って飛ばさないようにする）
+      var scrolled = (window.scrollY || document.documentElement.scrollTop || 0) > 40;
+      if(scrolled && s.el.getBoundingClientRect().top < window.innerHeight * 0.35){
         finishInstantly(s);
         s._done = true;
         continue;
@@ -1172,8 +1175,10 @@
 
       if(s.kind==='fade'){
         s.el.classList.add('on');
-        // 画像のあとは一呼吸置いてから次へ（タイピングが早く始まりすぎないように）
-        await wait(isFigure ? 1250 : 760);
+        // ヒーロー（記事の顔）は、しっかり味わう時間を長めに取る。
+        // 本文中の挿絵は一呼吸、それ以外は通常の間。
+        var isHero = s.el.classList && s.el.classList.contains('hero');
+        await wait(isHero ? 2400 : (isFigure ? 1250 : 760));
 
       }else if(s.kind==='type'){
         await typeIn(s.el, stash.get(s.el)||'');
