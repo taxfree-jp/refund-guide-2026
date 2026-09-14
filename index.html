@@ -9,14 +9,14 @@
     --ink:#1a1c20;
     --ink-soft:#4a4f57;
     --paper:#ffffff;
-    --panel:#fafbfc;
-    --line:#dde3ea;
-    --line-strong:#b9c4d0;
-    --accent:#1668b8;      /* 爽やかなブルー ― 信頼・clarity */
-    --accent-soft:#eaf2fa;
+    --panel:#fdf6f8;
+    --line:#f2d9e1;
+    --line-strong:#e8829d;
+    --accent:#d61953;      /* ブランドカラー ― 濃 */
+    --accent-soft:#fdeef2;
     --amber:#9a6c14;       /* 注意・論点の色 */
     --amber-soft:#fbf3e3;
-    --rule:#a8b6c4;
+    --rule:#e8829d;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -164,7 +164,7 @@
     font-weight:700;
     border-color:var(--accent);
   }
-  tbody tr:nth-child(even){background:#f5f8fa;}
+  tbody tr:nth-child(even){background:#fdf6f8;}
   td.center,th.center{text-align:center;}
   .tier1{font-weight:700;}
 
@@ -296,7 +296,7 @@
     margin:56px 0 8px;
     padding:26px 30px 28px;
     background:var(--accent-soft);
-    border:1px solid #c3d9ee;
+    border:1px solid #f2c3d1;
     border-radius:8px;
   }
   .recap-title{
@@ -305,7 +305,7 @@
     color:var(--accent);
     margin-bottom:16px;
     padding-bottom:10px;
-    border-bottom:1px solid #c3d9ee;
+    border-bottom:1px solid #f2c3d1;
   }
   .recap ul{
     list-style:none;
@@ -336,7 +336,7 @@
     margin:0 0 40px;
     border-radius:10px;
     overflow:hidden;
-    background:#2b3742;
+    background:#7d0f30;
     min-height:300px;
   }
   .hero-img{
@@ -356,7 +356,7 @@
   }
   /* 画像が読めない場合のフォールバック */
   .hero.is-empty{min-height:280px;}
-  .hero.is-empty .hero-overlay{background:linear-gradient(135deg,#33506b,#22303d);}
+  .hero.is-empty .hero-overlay{background:linear-gradient(135deg,#a81340,#7d0f30);}
   @media (max-width:600px){
     .hero{min-height:230px;margin-bottom:30px;}
     .hero-img{max-height:300px;}
@@ -373,7 +373,7 @@
     display:flex;flex-direction:column;justify-content:center;align-items:center;
     text-align:center;gap:8px;
     min-height:150px;padding:24px 22px;
-    background:repeating-linear-gradient(135deg,#f2f5f8,#f2f5f8 12px,#e9eef4 12px,#e9eef4 24px);
+    background:repeating-linear-gradient(135deg,#fdeef2,#fdeef2 12px,#f8dde5 12px,#f8dde5 24px);
     border:1.5px dashed var(--line-strong);border-radius:8px;
     color:var(--ink-soft);font-size:.92rem;line-height:1.7;
   }
